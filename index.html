@@ -1114,117 +1114,1707 @@
 
     <script>
         const vocabulary = [
-            { 
-                emoji: "👋", word: "สวัสดี", pinyin: "sa-wat-dee", eng: "Hello / Goodbye", 
-                thaiSent: "สวัสดี ค่ะ", pinyinSent: "Sa-wat-dee kha", engSent: "Hello.",
-                breakdown: [
-                    { thai: "สวัสดี", pinyin: "sa-wat-dee", meaning: "Hello / Goodbye", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle (Female)", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "👋",
+                        "word": "สวัสดี",
+                        "pinyin": "sa-wat-dee",
+                        "eng": "Hello / Goodbye",
+                        "thaiSent": "สวัสดี ค่ะ",
+                        "pinyinSent": "Sa-wat-dee kha",
+                        "engSent": "Hello.",
+                        "breakdown": [
+                                    {
+                                                "thai": "สวัสดี",
+                                                "pinyin": "sa-wat-dee",
+                                                "meaning": "Hello / Goodbye",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "🙏", word: "ขอบคุณ", pinyin: "khop khun", eng: "Thank you", 
-                thaiSent: "ขอบคุณ มากค่ะ", pinyinSent: "Khop khun mak kha", engSent: "Thank you very much.",
-                breakdown: [
-                    { thai: "ขอบคุณ", pinyin: "khop khun", meaning: "Thank you", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "มาก", pinyin: "mak", meaning: "Very / Much", color: "bg-red-100 text-red-900 border-red-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "🙏",
+                        "word": "ขอบคุณ",
+                        "pinyin": "khop khun",
+                        "eng": "Thank you",
+                        "thaiSent": "ขอบคุณ มากค่ะ",
+                        "pinyinSent": "Khop khun mak kha",
+                        "engSent": "Thank you very much.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ขอบคุณ",
+                                                "pinyin": "khop khun",
+                                                "meaning": "Thank you",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "💸", word: "แพง", pinyin: "phaeng", eng: "Expensive", 
-                thaiSent: "อันนี้ แพง ไหมคะ", pinyinSent: "An nee phaeng mai kha?", engSent: "Is this expensive?",
-                breakdown: [
-                    { thai: "อันนี้", pinyin: "an nee", meaning: "This one", color: "bg-red-100 text-red-900 border-red-300" },
-                    { thai: "แพง", pinyin: "phaeng", meaning: "Expensive", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ไหมคะ", pinyin: "mai kha", meaning: "Question particle (Female)", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "🚫",
+                        "word": "ไม่",
+                        "pinyin": "mai",
+                        "eng": "No / Not",
+                        "thaiSent": "ฉัน ไม่ เข้าใจค่ะ",
+                        "pinyinSent": "Chan mai khao jai kha",
+                        "engSent": "I do not understand.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ไม่",
+                                                "pinyin": "mai",
+                                                "meaning": "No / Not",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "🚫", word: "ไม่", pinyin: "mai", eng: "No / Not", 
-                thaiSent: "ฉัน ไม่ เข้าใจค่ะ", pinyinSent: "Chan mai khao jai kha", engSent: "I do not understand.",
-                breakdown: [
-                    { thai: "ฉัน", pinyin: "chan", meaning: "I / Me (Female)", color: "bg-purple-100 text-purple-900 border-purple-300" },
-                    { thai: "ไม่", pinyin: "mai", meaning: "No / Not", color: "bg-red-100 text-red-900 border-red-300" },
-                    { thai: "เข้าใจ", pinyin: "khao jai", meaning: "Understand", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "✅",
+                        "word": "ใช่",
+                        "pinyin": "chai",
+                        "eng": "Yes",
+                        "thaiSent": "ใช่ ค่ะ",
+                        "pinyinSent": "Chai kha",
+                        "engSent": "Yes.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ใช่",
+                                                "pinyin": "chai",
+                                                "meaning": "Yes",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "✅", word: "ใช่", pinyin: "chai", eng: "Yes", 
-                thaiSent: "ใช่ ค่ะ", pinyinSent: "Chai kha", engSent: "Yes.",
-                breakdown: [
-                    { thai: "ใช่", pinyin: "chai", meaning: "Yes / Correct", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "🙇‍♀️",
+                        "word": "ขอโทษ",
+                        "pinyin": "khor thot",
+                        "eng": "Sorry / Excuse me",
+                        "thaiSent": "ขอโทษ ค่ะ",
+                        "pinyinSent": "Khor thot kha",
+                        "engSent": "Sorry.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ขอโทษ",
+                                                "pinyin": "khor thot",
+                                                "meaning": "Sorry / Excuse me",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "🙇‍♀️", word: "ขอโทษ", pinyin: "khor thot", eng: "Sorry / Excuse me", 
-                thaiSent: "ขอโทษ ค่ะ", pinyinSent: "Khor thot kha", engSent: "Sorry.",
-                breakdown: [
-                    { thai: "ขอโทษ", pinyin: "khor thot", meaning: "Sorry / Excuse me", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "🤷‍♀️",
+                        "word": "ไม่เป็นไร",
+                        "pinyin": "mai pen rai",
+                        "eng": "No problem / Never mind",
+                        "thaiSent": "ไม่เป็นไร ค่ะ",
+                        "pinyinSent": "Mai pen rai kha",
+                        "engSent": "Never mind, it's okay.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ไม่เป็นไร",
+                                                "pinyin": "mai pen rai",
+                                                "meaning": "No problem / Never mind",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "🤷‍♀️", word: "ไม่เป็นไร", pinyin: "mai pen rai", eng: "No problem / Never mind", 
-                thaiSent: "ไม่เป็นไร ค่ะ", pinyinSent: "Mai pen rai kha", engSent: "Never mind, it's okay.",
-                breakdown: [
-                    { thai: "ไม่เป็นไร", pinyin: "mai pen rai", meaning: "No problem / You're welcome", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "💁‍♀️",
+                        "word": "ค่ะ / คะ",
+                        "pinyin": "kha",
+                        "eng": "Polite particle (Female)",
+                        "thaiSent": "ขอบคุณ ค่ะ",
+                        "pinyinSent": "Khop khun kha",
+                        "engSent": "Thank you (polite).",
+                        "breakdown": [
+                                    {
+                                                "thai": "ค่ะ / คะ",
+                                                "pinyin": "kha",
+                                                "meaning": "Polite particle (Female)",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "🙋‍♀️", word: "ฉัน", pinyin: "chan", eng: "I / Me (Female)", 
-                thaiSent: "ฉัน หิวข้าวค่ะ", pinyinSent: "Chan hiu khao kha", engSent: "I am hungry.",
-                breakdown: [
-                    { thai: "ฉัน", pinyin: "chan", meaning: "I / Me", color: "bg-purple-100 text-purple-900 border-purple-300" },
-                    { thai: "หิวข้าว", pinyin: "hiu khao", meaning: "Hungry", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "🙋‍♀️",
+                        "word": "ฉัน",
+                        "pinyin": "chan",
+                        "eng": "I / Me (Female)",
+                        "thaiSent": "ฉัน หิวข้าวค่ะ",
+                        "pinyinSent": "Chan hiu khao kha",
+                        "engSent": "I am hungry.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ฉัน",
+                                                "pinyin": "chan",
+                                                "meaning": "I / Me (Female)",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "👉", word: "คุณ", pinyin: "khun", eng: "You", 
-                thaiSent: "คุณ ชื่ออะไรคะ", pinyinSent: "Khun cheu a-rai kha?", engSent: "What is your name?",
-                breakdown: [
-                    { thai: "คุณ", pinyin: "khun", meaning: "You", color: "bg-purple-100 text-purple-900 border-purple-300" },
-                    { thai: "ชื่อ", pinyin: "cheu", meaning: "Name / Called", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "อะไรคะ", pinyin: "a-rai kha", meaning: "What?", color: "bg-red-100 text-red-900 border-red-300" }
-                ]
+            {
+                        "emoji": "👉",
+                        "word": "คุณ",
+                        "pinyin": "khun",
+                        "eng": "You",
+                        "thaiSent": "คุณ ชื่ออะไรคะ",
+                        "pinyinSent": "Khun cheu a-rai kha?",
+                        "engSent": "What is your name?",
+                        "breakdown": [
+                                    {
+                                                "thai": "คุณ",
+                                                "pinyin": "khun",
+                                                "meaning": "You",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "🚶‍♀️", word: "ไป", pinyin: "pai", eng: "Go", 
-                thaiSent: "ฉันอยาก ไป ทะเลค่ะ", pinyinSent: "Chan yak pai tha-le kha", engSent: "I want to go to the beach.",
-                breakdown: [
-                    { thai: "ฉัน", pinyin: "chan", meaning: "I", color: "bg-purple-100 text-purple-900 border-purple-300" },
-                    { thai: "อยาก", pinyin: "yak", meaning: "Want to", color: "bg-red-100 text-red-900 border-red-300" },
-                    { thai: "ไป", pinyin: "pai", meaning: "Go", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "ทะเล", pinyin: "tha-le", meaning: "Sea / Beach", color: "bg-emerald-100 text-emerald-900 border-emerald-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "👥",
+                        "word": "พวกเรา",
+                        "pinyin": "phuak rao",
+                        "eng": "We / Us",
+                        "thaiSent": "พวกเรา จะไปเที่ยวค่ะ",
+                        "pinyinSent": "Phuak rao ja pai thiao kha",
+                        "engSent": "We are going on a trip.",
+                        "breakdown": [
+                                    {
+                                                "thai": "พวกเรา",
+                                                "pinyin": "phuak rao",
+                                                "meaning": "We / Us",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "🍽️", word: "กิน", pinyin: "kin", eng: "Eat", 
-                thaiSent: "ไป กิน ข้าวกันเถอะค่ะ", pinyinSent: "Pai kin khao kan thoe kha", engSent: "Let's go eat.",
-                breakdown: [
-                    { thai: "ไป", pinyin: "pai", meaning: "Go", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "กิน", pinyin: "kin", meaning: "Eat", color: "bg-red-100 text-red-900 border-red-300" },
-                    { thai: "ข้าว", pinyin: "khao", meaning: "Rice / Food", color: "bg-emerald-100 text-emerald-900 border-emerald-300" },
-                    { thai: "กันเถอะค่ะ", pinyin: "kan thoe kha", meaning: "Let's do it", color: "bg-blue-100 text-blue-900 border-blue-300" }
-                ]
+            {
+                        "emoji": "🚶‍♀️",
+                        "word": "ไป",
+                        "pinyin": "pai",
+                        "eng": "Go",
+                        "thaiSent": "ฉันอยาก ไป ทะเลค่ะ",
+                        "pinyinSent": "Chan yak pai tha-le kha",
+                        "engSent": "I want to go to the beach.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ไป",
+                                                "pinyin": "pai",
+                                                "meaning": "Go",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             },
-            { 
-                emoji: "💧", word: "ดื่ม", pinyin: "deum", eng: "Drink", 
-                thaiSent: "ฉันอยาก ดื่ม น้ำค่ะ", pinyinSent: "Chan yak deum nam kha", engSent: "I want to drink water.",
-                breakdown: [
-                    { thai: "ฉัน", pinyin: "chan", meaning: "I", color: "bg-purple-100 text-purple-900 border-purple-300" },
-                    { thai: "อยาก", pinyin: "yak", meaning: "Want to", color: "bg-red-100 text-red-900 border-red-300" },
-                    { thai: "ดื่ม", pinyin: "deum", meaning: "Drink", color: "bg-amber-100 text-amber-900 border-amber-300" },
-                    { thai: "น้ำ", pinyin: "nam", meaning: "Water", color: "bg-blue-100 text-blue-900 border-blue-300" },
-                    { thai: "ค่ะ", pinyin: "kha", meaning: "Polite particle", color: "bg-emerald-100 text-emerald-900 border-emerald-300" }
-                ]
+            {
+                        "emoji": "🏃‍♀️",
+                        "word": "มา",
+                        "pinyin": "ma",
+                        "eng": "Come",
+                        "thaiSent": "มา ที่นี่หน่อยค่ะ",
+                        "pinyinSent": "Ma thee nee noi kha",
+                        "engSent": "Come here please.",
+                        "breakdown": [
+                                    {
+                                                "thai": "มา",
+                                                "pinyin": "ma",
+                                                "meaning": "Come",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🍽️",
+                        "word": "กิน",
+                        "pinyin": "kin",
+                        "eng": "Eat",
+                        "thaiSent": "ไป กิน ข้าวกันเถอะค่ะ",
+                        "pinyinSent": "Pai kin khao kan thoe kha",
+                        "engSent": "Let's go eat.",
+                        "breakdown": [
+                                    {
+                                                "thai": "กิน",
+                                                "pinyin": "kin",
+                                                "meaning": "Eat",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💧",
+                        "word": "ดื่ม",
+                        "pinyin": "deum",
+                        "eng": "Drink",
+                        "thaiSent": "ฉันอยาก ดื่ม น้ำค่ะ",
+                        "pinyinSent": "Chan yak deum nam kha",
+                        "engSent": "I want to drink water.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ดื่ม",
+                                                "pinyin": "deum",
+                                                "meaning": "Drink",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "❤️",
+                        "word": "ชอบ",
+                        "pinyin": "chop",
+                        "eng": "Like",
+                        "thaiSent": "ฉัน ชอบ อาหารไทยค่ะ",
+                        "pinyinSent": "Chan chop aa-haan thai kha",
+                        "engSent": "I like Thai food.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ชอบ",
+                                                "pinyin": "chop",
+                                                "meaning": "Like",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💖",
+                        "word": "รัก",
+                        "pinyin": "rak",
+                        "eng": "Love",
+                        "thaiSent": "ฉัน รัก คุณค่ะ",
+                        "pinyinSent": "Chan rak khun kha",
+                        "engSent": "I love you.",
+                        "breakdown": [
+                                    {
+                                                "thai": "รัก",
+                                                "pinyin": "rak",
+                                                "meaning": "Love",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🤲",
+                        "word": "เอา",
+                        "pinyin": "ao",
+                        "eng": "Want / Take (an object)",
+                        "thaiSent": "ฉัน เอา อันนี้ค่ะ",
+                        "pinyinSent": "Chan ao an nee kha",
+                        "engSent": "I want this one.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เอา",
+                                                "pinyin": "ao",
+                                                "meaning": "Want / Take (an object)",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💭",
+                        "word": "อยาก",
+                        "pinyin": "yak",
+                        "eng": "Want (to do something)",
+                        "thaiSent": "ฉัน อยาก นอนค่ะ",
+                        "pinyinSent": "Chan yak non kha",
+                        "engSent": "I want to sleep.",
+                        "breakdown": [
+                                    {
+                                                "thai": "อยาก",
+                                                "pinyin": "yak",
+                                                "meaning": "Want (to do something)",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🛍️",
+                        "word": "ซื้อ",
+                        "pinyin": "seue",
+                        "eng": "Buy",
+                        "thaiSent": "ฉันจะ ซื้อ เสื้อผ้าค่ะ",
+                        "pinyinSent": "Chan ja seue seua pha kha",
+                        "engSent": "I will buy clothes.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ซื้อ",
+                                                "pinyin": "seue",
+                                                "meaning": "Buy",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💰",
+                        "word": "ขาย",
+                        "pinyin": "khai",
+                        "eng": "Sell",
+                        "thaiSent": "เขา ขาย ผลไม้",
+                        "pinyinSent": "Khao khai phon-la-mai",
+                        "engSent": "He/She sells fruit.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ขาย",
+                                                "pinyin": "khai",
+                                                "meaning": "Sell",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👁️",
+                        "word": "ดู",
+                        "pinyin": "doo",
+                        "eng": "Look / Watch",
+                        "thaiSent": "ฉันชอบ ดู หนังค่ะ",
+                        "pinyinSent": "Chan chop doo nang kha",
+                        "engSent": "I like to watch movies.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ดู",
+                                                "pinyin": "doo",
+                                                "meaning": "Look / Watch",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👂",
+                        "word": "ฟัง",
+                        "pinyin": "fang",
+                        "eng": "Listen",
+                        "thaiSent": "ฉันกำลัง ฟัง เพลงค่ะ",
+                        "pinyinSent": "Chan kam-lang fang phleng kha",
+                        "engSent": "I am listening to music.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ฟัง",
+                                                "pinyin": "fang",
+                                                "meaning": "Listen",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🗣️",
+                        "word": "พูด",
+                        "pinyin": "phoot",
+                        "eng": "Speak",
+                        "thaiSent": "คุณ พูด ภาษาอังกฤษได้ไหมคะ",
+                        "pinyinSent": "Khun phoot pha-sa ang-krit dai mai kha?",
+                        "engSent": "Can you speak English?",
+                        "breakdown": [
+                                    {
+                                                "thai": "พูด",
+                                                "pinyin": "phoot",
+                                                "meaning": "Speak",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "📖",
+                        "word": "อ่าน",
+                        "pinyin": "aan",
+                        "eng": "Read",
+                        "thaiSent": "ฉันกำลัง อ่าน หนังสือค่ะ",
+                        "pinyinSent": "Chan kam-lang aan nang-seu kha",
+                        "engSent": "I am reading a book.",
+                        "breakdown": [
+                                    {
+                                                "thai": "อ่าน",
+                                                "pinyin": "aan",
+                                                "meaning": "Read",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "✍️",
+                        "word": "เขียน",
+                        "pinyin": "khian",
+                        "eng": "Write",
+                        "thaiSent": "ฉันกำลัง เขียน ค่ะ",
+                        "pinyinSent": "Chan kam-lang khian kha",
+                        "engSent": "I am writing.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เขียน",
+                                                "pinyin": "khian",
+                                                "meaning": "Write",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🧠",
+                        "word": "เข้าใจ",
+                        "pinyin": "khao jai",
+                        "eng": "Understand",
+                        "thaiSent": "ฉันไม่ เข้าใจ ค่ะ",
+                        "pinyinSent": "Chan mai khao jai kha",
+                        "engSent": "I do not understand.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เข้าใจ",
+                                                "pinyin": "khao jai",
+                                                "meaning": "Understand",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "❓",
+                        "word": "รู้",
+                        "pinyin": "roo",
+                        "eng": "Know",
+                        "thaiSent": "ฉันไม่ รู้ ค่ะ",
+                        "pinyinSent": "Chan mai roo kha",
+                        "engSent": "I do not know.",
+                        "breakdown": [
+                                    {
+                                                "thai": "รู้",
+                                                "pinyin": "roo",
+                                                "meaning": "Know",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🛌",
+                        "word": "นอน",
+                        "pinyin": "non",
+                        "eng": "Sleep",
+                        "thaiSent": "ถึงเวลา นอน แล้วค่ะ",
+                        "pinyinSent": "Theung we-la non laew kha",
+                        "engSent": "It is time to sleep.",
+                        "breakdown": [
+                                    {
+                                                "thai": "นอน",
+                                                "pinyin": "non",
+                                                "meaning": "Sleep",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "⏰",
+                        "word": "ตื่น",
+                        "pinyin": "teun",
+                        "eng": "Wake up",
+                        "thaiSent": "ฉัน ตื่น เช้าค่ะ",
+                        "pinyinSent": "Chan teun chao kha",
+                        "engSent": "I wake up early.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ตื่น",
+                                                "pinyin": "teun",
+                                                "meaning": "Wake up",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💼",
+                        "word": "ทำงาน",
+                        "pinyin": "tham ngan",
+                        "eng": "Work",
+                        "thaiSent": "วันนี้ฉันต้อง ทำงาน ค่ะ",
+                        "pinyinSent": "Wan nee chan tong tham ngan kha",
+                        "engSent": "Today I have to work.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ทำงาน",
+                                                "pinyin": "tham ngan",
+                                                "meaning": "Work",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏃‍♀️",
+                        "word": "ทำ",
+                        "pinyin": "tham",
+                        "eng": "Do / Make",
+                        "thaiSent": "คุณกำลัง ทำ อะไรคะ",
+                        "pinyinSent": "Khun kam-lang tham a-rai kha?",
+                        "engSent": "What are you doing?",
+                        "breakdown": [
+                                    {
+                                                "thai": "ทำ",
+                                                "pinyin": "tham",
+                                                "meaning": "Do / Make",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🤝",
+                        "word": "มี",
+                        "pinyin": "mee",
+                        "eng": "Have",
+                        "thaiSent": "ฉัน มี คำถามค่ะ",
+                        "pinyinSent": "Chan mee kham tham kha",
+                        "engSent": "I have a question.",
+                        "breakdown": [
+                                    {
+                                                "thai": "มี",
+                                                "pinyin": "mee",
+                                                "meaning": "Have",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "📍",
+                        "word": "อยู่",
+                        "pinyin": "yoo",
+                        "eng": "Be (at a place) / Stay",
+                        "thaiSent": "คุณ อยู่ ที่ไหนคะ",
+                        "pinyinSent": "Khun yoo thee nai kha?",
+                        "engSent": "Where are you staying?",
+                        "breakdown": [
+                                    {
+                                                "thai": "อยู่",
+                                                "pinyin": "yoo",
+                                                "meaning": "Be (at a place) / Stay",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👤",
+                        "word": "เป็น",
+                        "pinyin": "pen",
+                        "eng": "Be (is/am/are)",
+                        "thaiSent": "เขา เป็น หมอ",
+                        "pinyinSent": "Khao pen mor",
+                        "engSent": "He/She is a doctor.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เป็น",
+                                                "pinyin": "pen",
+                                                "meaning": "Be (is/am/are)",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🚶‍♀️",
+                        "word": "เดิน",
+                        "pinyin": "doen",
+                        "eng": "Walk",
+                        "thaiSent": "ฉัน เดิน ไปตลาดค่ะ",
+                        "pinyinSent": "Chan doen pai ta-lat kha",
+                        "engSent": "I walk to the market.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เดิน",
+                                                "pinyin": "doen",
+                                                "meaning": "Walk",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🚗",
+                        "word": "ขับ",
+                        "pinyin": "khap",
+                        "eng": "Drive",
+                        "thaiSent": "ฉัน ขับ รถไม่เป็นค่ะ",
+                        "pinyinSent": "Chan khap rot mai pen kha",
+                        "engSent": "I do not know how to drive.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ขับ",
+                                                "pinyin": "khap",
+                                                "meaning": "Drive",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "✈️",
+                        "word": "บิน",
+                        "pinyin": "bin",
+                        "eng": "Fly",
+                        "thaiSent": "นกกำลัง บิน",
+                        "pinyinSent": "Nok kam-lang bin",
+                        "engSent": "The bird is flying.",
+                        "breakdown": [
+                                    {
+                                                "thai": "บิน",
+                                                "pinyin": "bin",
+                                                "meaning": "Fly",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "❓",
+                        "word": "อะไร",
+                        "pinyin": "a-rai",
+                        "eng": "What",
+                        "thaiSent": "นี่คือ อะไร คะ",
+                        "pinyinSent": "Nee kheu a-rai kha?",
+                        "engSent": "What is this?",
+                        "breakdown": [
+                                    {
+                                                "thai": "อะไร",
+                                                "pinyin": "a-rai",
+                                                "meaning": "What",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🗺️",
+                        "word": "ที่ไหน",
+                        "pinyin": "thee nai",
+                        "eng": "Where",
+                        "thaiSent": "ห้องน้ำอยู่ ที่ไหน คะ",
+                        "pinyinSent": "Hong nam yoo thee nai kha?",
+                        "engSent": "Where is the restroom?",
+                        "breakdown": [
+                                    {
+                                                "thai": "ที่ไหน",
+                                                "pinyin": "thee nai",
+                                                "meaning": "Where",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🕒",
+                        "word": "เมื่อไหร่",
+                        "pinyin": "meua rai",
+                        "eng": "When",
+                        "thaiSent": "คุณจะมา เมื่อไหร่ คะ",
+                        "pinyinSent": "Khun ja ma meua rai kha?",
+                        "engSent": "When will you come?",
+                        "breakdown": [
+                                    {
+                                                "thai": "เมื่อไหร่",
+                                                "pinyin": "meua rai",
+                                                "meaning": "When",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🤷‍♀️",
+                        "word": "ทำไม",
+                        "pinyin": "tham mai",
+                        "eng": "Why",
+                        "thaiSent": "ทำไม คะ",
+                        "pinyinSent": "Tham mai kha?",
+                        "engSent": "Why?",
+                        "breakdown": [
+                                    {
+                                                "thai": "ทำไม",
+                                                "pinyin": "tham mai",
+                                                "meaning": "Why",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🔄",
+                        "word": "อย่างไร",
+                        "pinyin": "yang rai",
+                        "eng": "How",
+                        "thaiSent": "ไป อย่างไร คะ",
+                        "pinyinSent": "Pai yang rai kha?",
+                        "engSent": "How to go there?",
+                        "breakdown": [
+                                    {
+                                                "thai": "อย่างไร",
+                                                "pinyin": "yang rai",
+                                                "meaning": "How",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👥",
+                        "word": "ใคร",
+                        "pinyin": "khrai",
+                        "eng": "Who",
+                        "thaiSent": "ใคร อยู่ในห้องคะ",
+                        "pinyinSent": "Khrai yoo nai hong kha?",
+                        "engSent": "Who is in the room?",
+                        "breakdown": [
+                                    {
+                                                "thai": "ใคร",
+                                                "pinyin": "khrai",
+                                                "meaning": "Who",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💵",
+                        "word": "เท่าไหร่",
+                        "pinyin": "thao rai",
+                        "eng": "How much",
+                        "thaiSent": "อันนี้ราคา เท่าไหร่ คะ",
+                        "pinyinSent": "An nee ra-kha thao rai kha?",
+                        "engSent": "How much is this?",
+                        "breakdown": [
+                                    {
+                                                "thai": "เท่าไหร่",
+                                                "pinyin": "thao rai",
+                                                "meaning": "How much",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🍚",
+                        "word": "ข้าว",
+                        "pinyin": "khao",
+                        "eng": "Rice / Food",
+                        "thaiSent": "ฉันหิว ข้าว ค่ะ",
+                        "pinyinSent": "Chan hiu khao kha",
+                        "engSent": "I am hungry for food (rice).",
+                        "breakdown": [
+                                    {
+                                                "thai": "ข้าว",
+                                                "pinyin": "khao",
+                                                "meaning": "Rice / Food",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💧",
+                        "word": "น้ำ",
+                        "pinyin": "nam",
+                        "eng": "Water",
+                        "thaiSent": "ขอ น้ำ เปล่าค่ะ",
+                        "pinyinSent": "Khor nam plao kha",
+                        "engSent": "Water, please.",
+                        "breakdown": [
+                                    {
+                                                "thai": "น้ำ",
+                                                "pinyin": "nam",
+                                                "meaning": "Water",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🌶️",
+                        "word": "เผ็ด",
+                        "pinyin": "phet",
+                        "eng": "Spicy",
+                        "thaiSent": "ไม่เอา เผ็ด ค่ะ",
+                        "pinyinSent": "Mai ao phet kha",
+                        "engSent": "I don't want it spicy.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เผ็ด",
+                                                "pinyin": "phet",
+                                                "meaning": "Spicy",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "😋",
+                        "word": "อร่อย",
+                        "pinyin": "a-roi",
+                        "eng": "Delicious",
+                        "thaiSent": "อาหาร อร่อย มากค่ะ",
+                        "pinyinSent": "Aa-haan a-roi mak kha",
+                        "engSent": "The food is very delicious.",
+                        "breakdown": [
+                                    {
+                                                "thai": "อร่อย",
+                                                "pinyin": "a-roi",
+                                                "meaning": "Delicious",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🍬",
+                        "word": "หวาน",
+                        "pinyin": "waan",
+                        "eng": "Sweet",
+                        "thaiSent": "ขอแบบ หวาน น้อยค่ะ",
+                        "pinyinSent": "Khor baep waan noi kha",
+                        "engSent": "Less sweet, please.",
+                        "breakdown": [
+                                    {
+                                                "thai": "หวาน",
+                                                "pinyin": "waan",
+                                                "meaning": "Sweet",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🍋",
+                        "word": "เปรี้ยว",
+                        "pinyin": "priao",
+                        "eng": "Sour",
+                        "thaiSent": "มะนาวมีรส เปรี้ยว",
+                        "pinyinSent": "Ma-nao mee rot priao",
+                        "engSent": "Lemons are sour.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เปรี้ยว",
+                                                "pinyin": "priao",
+                                                "meaning": "Sour",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🧂",
+                        "word": "เค็ม",
+                        "pinyin": "khem",
+                        "eng": "Salty",
+                        "thaiSent": "ซุปนี้ เค็ม เกินไปค่ะ",
+                        "pinyinSent": "Sup nee khem koen pai kha",
+                        "engSent": "This soup is too salty.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เค็ม",
+                                                "pinyin": "khem",
+                                                "meaning": "Salty",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🥵",
+                        "word": "ร้อน",
+                        "pinyin": "ron",
+                        "eng": "Hot",
+                        "thaiSent": "อากาศวันนี้ ร้อน มากค่ะ",
+                        "pinyinSent": "Aa-kat wan nee ron mak kha",
+                        "engSent": "The weather is very hot today.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ร้อน",
+                                                "pinyin": "ron",
+                                                "meaning": "Hot",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🥶",
+                        "word": "หนาว",
+                        "pinyin": "nao",
+                        "eng": "Cold",
+                        "thaiSent": "ห้องนี้อากาศ หนาว ค่ะ",
+                        "pinyinSent": "Hong nee aa-kat nao kha",
+                        "engSent": "This room is cold.",
+                        "breakdown": [
+                                    {
+                                                "thai": "หนาว",
+                                                "pinyin": "nao",
+                                                "meaning": "Cold",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👍",
+                        "word": "ดี",
+                        "pinyin": "dee",
+                        "eng": "Good",
+                        "thaiSent": "วันนี้เป็นวัน ดี ค่ะ",
+                        "pinyinSent": "Wan nee pen wan dee kha",
+                        "engSent": "Today is a good day.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ดี",
+                                                "pinyin": "dee",
+                                                "meaning": "Good",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👎",
+                        "word": "แย่",
+                        "pinyin": "yae",
+                        "eng": "Bad",
+                        "thaiSent": "อากาศวันนี้ แย่ มากค่ะ",
+                        "pinyinSent": "Aa-kat wan nee yae mak kha",
+                        "engSent": "The weather is very bad today.",
+                        "breakdown": [
+                                    {
+                                                "thai": "แย่",
+                                                "pinyin": "yae",
+                                                "meaning": "Bad",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐘",
+                        "word": "ใหญ่",
+                        "pinyin": "yai",
+                        "eng": "Big",
+                        "thaiSent": "ขออัน ใหญ่ ค่ะ",
+                        "pinyinSent": "Khor an yai kha",
+                        "engSent": "I want a big one.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ใหญ่",
+                                                "pinyin": "yai",
+                                                "meaning": "Big",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐜",
+                        "word": "เล็ก",
+                        "pinyin": "lek",
+                        "eng": "Small",
+                        "thaiSent": "ขออัน เล็ก ค่ะ",
+                        "pinyinSent": "Khor an lek kha",
+                        "engSent": "I want a small one.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เล็ก",
+                                                "pinyin": "lek",
+                                                "meaning": "Small",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💸",
+                        "word": "แพง",
+                        "pinyin": "phaeng",
+                        "eng": "Expensive",
+                        "thaiSent": "อันนี้ แพง ไหมคะ",
+                        "pinyinSent": "An nee phaeng mai kha?",
+                        "engSent": "Is this expensive?",
+                        "breakdown": [
+                                    {
+                                                "thai": "แพง",
+                                                "pinyin": "phaeng",
+                                                "meaning": "Expensive",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏷️",
+                        "word": "ถูก",
+                        "pinyin": "thook",
+                        "eng": "Cheap / Correct",
+                        "thaiSent": "ร้านนี้ขายของ ถูก ค่ะ",
+                        "pinyinSent": "Ran nee khai khong thook kha",
+                        "engSent": "This shop sells cheap things.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ถูก",
+                                                "pinyin": "thook",
+                                                "meaning": "Cheap / Correct",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🆕",
+                        "word": "ใหม่",
+                        "pinyin": "mai",
+                        "eng": "New",
+                        "thaiSent": "ฉันมีโทรศัพท์ ใหม่ ค่ะ",
+                        "pinyinSent": "Chan mee tho-ra-sap mai kha",
+                        "engSent": "I have a new phone.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ใหม่",
+                                                "pinyin": "mai",
+                                                "meaning": "New",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏚️",
+                        "word": "เก่า",
+                        "pinyin": "kao",
+                        "eng": "Old (Things)",
+                        "thaiSent": "รถคันนี้ เก่า แล้ว",
+                        "pinyinSent": "Rot khan nee kao laew",
+                        "engSent": "This car is old.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เก่า",
+                                                "pinyin": "kao",
+                                                "meaning": "Old (Things)",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👵",
+                        "word": "แก่",
+                        "pinyin": "kae",
+                        "eng": "Old (People)",
+                        "thaiSent": "ฉันยังไม่ แก่ ค่ะ",
+                        "pinyinSent": "Chan yang mai kae kha",
+                        "engSent": "I am not old yet.",
+                        "breakdown": [
+                                    {
+                                                "thai": "แก่",
+                                                "pinyin": "kae",
+                                                "meaning": "Old (People)",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "⏩",
+                        "word": "เร็ว",
+                        "pinyin": "rew",
+                        "eng": "Fast",
+                        "thaiSent": "ขับให้ เร็ว หน่อยค่ะ",
+                        "pinyinSent": "Khap hai rew noi kha",
+                        "engSent": "Drive a little faster.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เร็ว",
+                                                "pinyin": "rew",
+                                                "meaning": "Fast",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐢",
+                        "word": "ช้า",
+                        "pinyin": "cha",
+                        "eng": "Slow",
+                        "thaiSent": "พูด ช้า ลงหน่อยค่ะ",
+                        "pinyinSent": "Phoot cha long noi kha",
+                        "engSent": "Please speak slower.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ช้า",
+                                                "pinyin": "cha",
+                                                "meaning": "Slow",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🌞",
+                        "word": "วันนี้",
+                        "pinyin": "wan nee",
+                        "eng": "Today",
+                        "thaiSent": "วันนี้ วันอะไรคะ",
+                        "pinyinSent": "Wan nee wan a-rai kha?",
+                        "engSent": "What day is today?",
+                        "breakdown": [
+                                    {
+                                                "thai": "วันนี้",
+                                                "pinyin": "wan nee",
+                                                "meaning": "Today",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🌅",
+                        "word": "พรุ่งนี้",
+                        "pinyin": "phrung nee",
+                        "eng": "Tomorrow",
+                        "thaiSent": "เจอกัน พรุ่งนี้ ค่ะ",
+                        "pinyinSent": "Joe kan phrung nee kha",
+                        "engSent": "See you tomorrow.",
+                        "breakdown": [
+                                    {
+                                                "thai": "พรุ่งนี้",
+                                                "pinyin": "phrung nee",
+                                                "meaning": "Tomorrow",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🌇",
+                        "word": "เมื่อวาน",
+                        "pinyin": "meua waan",
+                        "eng": "Yesterday",
+                        "thaiSent": "เมื่อวาน ฝนตก",
+                        "pinyinSent": "Meua waan fon tok",
+                        "engSent": "Yesterday it rained.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เมื่อวาน",
+                                                "pinyin": "meua waan",
+                                                "meaning": "Yesterday",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏠",
+                        "word": "บ้าน",
+                        "pinyin": "baan",
+                        "eng": "House / Home",
+                        "thaiSent": "ฉันกำลังกลับ บ้าน ค่ะ",
+                        "pinyinSent": "Chan kam-lang klap baan kha",
+                        "engSent": "I am going home.",
+                        "breakdown": [
+                                    {
+                                                "thai": "บ้าน",
+                                                "pinyin": "baan",
+                                                "meaning": "House / Home",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏨",
+                        "word": "โรงแรม",
+                        "pinyin": "rong raem",
+                        "eng": "Hotel",
+                        "thaiSent": "ฉันพักที่ โรงแรม นี้ค่ะ",
+                        "pinyinSent": "Chan phak thee rong raem nee kha",
+                        "engSent": "I am staying at this hotel.",
+                        "breakdown": [
+                                    {
+                                                "thai": "โรงแรม",
+                                                "pinyin": "rong raem",
+                                                "meaning": "Hotel",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🚽",
+                        "word": "ห้องน้ำ",
+                        "pinyin": "hong nam",
+                        "eng": "Restroom",
+                        "thaiSent": "ขอเข้า ห้องน้ำ หน่อยค่ะ",
+                        "pinyinSent": "Khor khao hong nam noi kha",
+                        "engSent": "May I use the restroom?",
+                        "breakdown": [
+                                    {
+                                                "thai": "ห้องน้ำ",
+                                                "pinyin": "hong nam",
+                                                "meaning": "Restroom",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏪",
+                        "word": "ตลาด",
+                        "pinyin": "ta-lat",
+                        "eng": "Market",
+                        "thaiSent": "ฉันไป ตลาด ค่ะ",
+                        "pinyinSent": "Chan pai ta-lat kha",
+                        "engSent": "I am going to the market.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ตลาด",
+                                                "pinyin": "ta-lat",
+                                                "meaning": "Market",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏥",
+                        "word": "โรงพยาบาล",
+                        "pinyin": "rong pha-ya-baan",
+                        "eng": "Hospital",
+                        "thaiSent": "ฉันจะไป โรงพยาบาล ค่ะ",
+                        "pinyinSent": "Chan ja pai rong pha-ya-baan kha",
+                        "engSent": "I am going to the hospital.",
+                        "breakdown": [
+                                    {
+                                                "thai": "โรงพยาบาล",
+                                                "pinyin": "rong pha-ya-baan",
+                                                "meaning": "Hospital",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "✈️",
+                        "word": "สนามบิน",
+                        "pinyin": "sa-nam bin",
+                        "eng": "Airport",
+                        "thaiSent": "ไป สนามบิน ค่ะ",
+                        "pinyinSent": "Pai sa-nam bin kha",
+                        "engSent": "Go to the airport.",
+                        "breakdown": [
+                                    {
+                                                "thai": "สนามบิน",
+                                                "pinyin": "sa-nam bin",
+                                                "meaning": "Airport",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🚉",
+                        "word": "สถานีรถไฟ",
+                        "pinyin": "sa-tha-nee rot fai",
+                        "eng": "Train station",
+                        "thaiSent": "สถานีรถไฟ อยู่ที่ไหนคะ",
+                        "pinyinSent": "Sa-tha-nee rot fai yoo thee nai kha?",
+                        "engSent": "Where is the train station?",
+                        "breakdown": [
+                                    {
+                                                "thai": "สถานีรถไฟ",
+                                                "pinyin": "sa-tha-nee rot fai",
+                                                "meaning": "Train station",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🚘",
+                        "word": "รถ",
+                        "pinyin": "rot",
+                        "eng": "Car / Vehicle",
+                        "thaiSent": "ฉันรอ รถ อยู่ค่ะ",
+                        "pinyinSent": "Chan ror rot yoo kha",
+                        "engSent": "I am waiting for the car.",
+                        "breakdown": [
+                                    {
+                                                "thai": "รถ",
+                                                "pinyin": "rot",
+                                                "meaning": "Car / Vehicle",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "💵",
+                        "word": "เงิน",
+                        "pinyin": "ngoen",
+                        "eng": "Money",
+                        "thaiSent": "ฉันไม่มี เงิน ค่ะ",
+                        "pinyinSent": "Chan mai mee ngoen kha",
+                        "engSent": "I don't have money.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เงิน",
+                                                "pinyin": "ngoen",
+                                                "meaning": "Money",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "📱",
+                        "word": "โทรศัพท์",
+                        "pinyin": "tho-ra-sap",
+                        "eng": "Telephone",
+                        "thaiSent": "ฉันขอใช้ โทรศัพท์ หน่อยค่ะ",
+                        "pinyinSent": "Chan khor chai tho-ra-sap noi kha",
+                        "engSent": "May I use the phone?",
+                        "breakdown": [
+                                    {
+                                                "thai": "โทรศัพท์",
+                                                "pinyin": "tho-ra-sap",
+                                                "meaning": "Telephone",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐕",
+                        "word": "หมา",
+                        "pinyin": "ma",
+                        "eng": "Dog",
+                        "thaiSent": "ฉันชอบ หมา ค่ะ",
+                        "pinyinSent": "Chan chop ma kha",
+                        "engSent": "I like dogs.",
+                        "breakdown": [
+                                    {
+                                                "thai": "หมา",
+                                                "pinyin": "ma",
+                                                "meaning": "Dog",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐈",
+                        "word": "แมว",
+                        "pinyin": "maew",
+                        "eng": "Cat",
+                        "thaiSent": "ฉันเลี้ยง แมว สองตัวค่ะ",
+                        "pinyinSent": "Chan liang maew song tua kha",
+                        "engSent": "I have two cats.",
+                        "breakdown": [
+                                    {
+                                                "thai": "แมว",
+                                                "pinyin": "maew",
+                                                "meaning": "Cat",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐷",
+                        "word": "หมู",
+                        "pinyin": "moo",
+                        "eng": "Pork / Pig",
+                        "thaiSent": "ฉันไม่กินเนื้อ หมู ค่ะ",
+                        "pinyinSent": "Chan mai kin neua moo kha",
+                        "engSent": "I don't eat pork.",
+                        "breakdown": [
+                                    {
+                                                "thai": "หมู",
+                                                "pinyin": "moo",
+                                                "meaning": "Pork / Pig",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐔",
+                        "word": "ไก่",
+                        "pinyin": "kai",
+                        "eng": "Chicken",
+                        "thaiSent": "ฉันกิน ไก่ ค่ะ",
+                        "pinyinSent": "Chan kin kai kha",
+                        "engSent": "I eat chicken.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ไก่",
+                                                "pinyin": "kai",
+                                                "meaning": "Chicken",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🐟",
+                        "word": "ปลา",
+                        "pinyin": "pla",
+                        "eng": "Fish",
+                        "thaiSent": "ฉันชอบกิน ปลา ค่ะ",
+                        "pinyinSent": "Chan chop kin pla kha",
+                        "engSent": "I like to eat fish.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ปลา",
+                                                "pinyin": "pla",
+                                                "meaning": "Fish",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🥚",
+                        "word": "ไข่",
+                        "pinyin": "khai",
+                        "eng": "Egg",
+                        "thaiSent": "ขอ ไข่ ดาวค่ะ",
+                        "pinyinSent": "Khor khai dao kha",
+                        "engSent": "I want a fried egg.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ไข่",
+                                                "pinyin": "khai",
+                                                "meaning": "Egg",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "☕",
+                        "word": "กาแฟ",
+                        "pinyin": "ka-fae",
+                        "eng": "Coffee",
+                        "thaiSent": "ขอ กาแฟ ร้อนหนึ่งแก้วค่ะ",
+                        "pinyinSent": "Khor ka-fae ron neung kaew kha",
+                        "engSent": "One hot coffee, please.",
+                        "breakdown": [
+                                    {
+                                                "thai": "กาแฟ",
+                                                "pinyin": "ka-fae",
+                                                "meaning": "Coffee",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🍵",
+                        "word": "ชา",
+                        "pinyin": "cha",
+                        "eng": "Tea",
+                        "thaiSent": "ฉันชอบดื่ม ชา ค่ะ",
+                        "pinyinSent": "Chan chop deum cha kha",
+                        "engSent": "I like drinking tea.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ชา",
+                                                "pinyin": "cha",
+                                                "meaning": "Tea",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🍺",
+                        "word": "เบียร์",
+                        "pinyin": "bia",
+                        "eng": "Beer",
+                        "thaiSent": "ฉันไม่ดื่ม เบียร์ ค่ะ",
+                        "pinyinSent": "Chan mai deum bia kha",
+                        "engSent": "I don't drink beer.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เบียร์",
+                                                "pinyin": "bia",
+                                                "meaning": "Beer",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "☀️",
+                        "word": "พระอาทิตย์",
+                        "pinyin": "phra aa-thit",
+                        "eng": "Sun",
+                        "thaiSent": "พระอาทิตย์ สวยมากค่ะ",
+                        "pinyinSent": "Phra aa-thit suay mak kha",
+                        "engSent": "The sun is very beautiful.",
+                        "breakdown": [
+                                    {
+                                                "thai": "พระอาทิตย์",
+                                                "pinyin": "phra aa-thit",
+                                                "meaning": "Sun",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🌧️",
+                        "word": "ฝน",
+                        "pinyin": "fon",
+                        "eng": "Rain",
+                        "thaiSent": "วันนี้ ฝน ตก",
+                        "pinyinSent": "Wan nee fon tok",
+                        "engSent": "It is raining today.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ฝน",
+                                                "pinyin": "fon",
+                                                "meaning": "Rain",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "☁️",
+                        "word": "ท้องฟ้า",
+                        "pinyin": "thong fa",
+                        "eng": "Sky",
+                        "thaiSent": "ท้องฟ้า สวยจัง",
+                        "pinyinSent": "Thong fa suay jang",
+                        "engSent": "The sky is so beautiful.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ท้องฟ้า",
+                                                "pinyin": "thong fa",
+                                                "meaning": "Sky",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏔️",
+                        "word": "ภูเขา",
+                        "pinyin": "phoo khao",
+                        "eng": "Mountain",
+                        "thaiSent": "ฉันชอบ ภูเขา ค่ะ",
+                        "pinyinSent": "Chan chop phoo khao kha",
+                        "engSent": "I like mountains.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ภูเขา",
+                                                "pinyin": "phoo khao",
+                                                "meaning": "Mountain",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🏖️",
+                        "word": "ทะเล",
+                        "pinyin": "tha-le",
+                        "eng": "Sea / Beach",
+                        "thaiSent": "ฉันอยากไป ทะเล ค่ะ",
+                        "pinyinSent": "Chan yak pai tha-le kha",
+                        "engSent": "I want to go to the beach.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ทะเล",
+                                                "pinyin": "tha-le",
+                                                "meaning": "Sea / Beach",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🎨",
+                        "word": "สี",
+                        "pinyin": "see",
+                        "eng": "Color",
+                        "thaiSent": "ฉันชอบ สี นี้ค่ะ",
+                        "pinyinSent": "Chan chop see nee kha",
+                        "engSent": "I like this color.",
+                        "breakdown": [
+                                    {
+                                                "thai": "สี",
+                                                "pinyin": "see",
+                                                "meaning": "Color",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🔴",
+                        "word": "สีแดง",
+                        "pinyin": "see daeng",
+                        "eng": "Red",
+                        "thaiSent": "ฉันจะเอา สีแดง ค่ะ",
+                        "pinyinSent": "Chan ja ao see daeng kha",
+                        "engSent": "I will take the red one.",
+                        "breakdown": [
+                                    {
+                                                "thai": "สีแดง",
+                                                "pinyin": "see daeng",
+                                                "meaning": "Red",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🔵",
+                        "word": "สีฟ้า",
+                        "pinyin": "see fa",
+                        "eng": "Blue",
+                        "thaiSent": "ท้องฟ้าเป็น สีฟ้า",
+                        "pinyinSent": "Thong fa pen see fa",
+                        "engSent": "The sky is blue.",
+                        "breakdown": [
+                                    {
+                                                "thai": "สีฟ้า",
+                                                "pinyin": "see fa",
+                                                "meaning": "Blue",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🟢",
+                        "word": "สีเขียว",
+                        "pinyin": "see khiao",
+                        "eng": "Green",
+                        "thaiSent": "ฉันชอบ สีเขียว ค่ะ",
+                        "pinyinSent": "Chan chop see khiao kha",
+                        "engSent": "I like green.",
+                        "breakdown": [
+                                    {
+                                                "thai": "สีเขียว",
+                                                "pinyin": "see khiao",
+                                                "meaning": "Green",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👗",
+                        "word": "เสื้อ",
+                        "pinyin": "seua",
+                        "eng": "Shirt / Clothes",
+                        "thaiSent": "เสื้อ ตัวนี้สวยมากค่ะ",
+                        "pinyinSent": "Seua tua nee suay mak kha",
+                        "engSent": "This shirt is very beautiful.",
+                        "breakdown": [
+                                    {
+                                                "thai": "เสื้อ",
+                                                "pinyin": "seua",
+                                                "meaning": "Shirt / Clothes",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👖",
+                        "word": "กางเกง",
+                        "pinyin": "kang-keng",
+                        "eng": "Pants",
+                        "thaiSent": "ขอเปลี่ยน กางเกง ค่ะ",
+                        "pinyinSent": "Khor plian kang-keng kha",
+                        "engSent": "I want to change the pants.",
+                        "breakdown": [
+                                    {
+                                                "thai": "กางเกง",
+                                                "pinyin": "kang-keng",
+                                                "meaning": "Pants",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "👟",
+                        "word": "รองเท้า",
+                        "pinyin": "rong thao",
+                        "eng": "Shoes",
+                        "thaiSent": "รองเท้า คู่นี้แพงไหมคะ",
+                        "pinyinSent": "Rong thao khoo nee phaeng mai kha?",
+                        "engSent": "Are these shoes expensive?",
+                        "breakdown": [
+                                    {
+                                                "thai": "รองเท้า",
+                                                "pinyin": "rong thao",
+                                                "meaning": "Shoes",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🧳",
+                        "word": "กระเป๋า",
+                        "pinyin": "kra-pao",
+                        "eng": "Bag / Luggage",
+                        "thaiSent": "นี่คือ กระเป๋า ของฉันค่ะ",
+                        "pinyinSent": "Nee kheu kra-pao khong chan kha",
+                        "engSent": "This is my bag.",
+                        "breakdown": [
+                                    {
+                                                "thai": "กระเป๋า",
+                                                "pinyin": "kra-pao",
+                                                "meaning": "Bag / Luggage",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
+            },
+            {
+                        "emoji": "🆘",
+                        "word": "ช่วยด้วย",
+                        "pinyin": "chuay duay",
+                        "eng": "Help!",
+                        "thaiSent": "ช่วยด้วย ฉันหลงทางค่ะ",
+                        "pinyinSent": "Chuay duay chan long thang kha",
+                        "engSent": "Help! I am lost.",
+                        "breakdown": [
+                                    {
+                                                "thai": "ช่วยด้วย",
+                                                "pinyin": "chuay duay",
+                                                "meaning": "Help!",
+                                                "color": "bg-amber-100 text-amber-900 border-amber-300"
+                                    }
+                        ]
             }
-        ];
+];
 
         let activeDeck = [];
         let currentCardIndex = 0;
