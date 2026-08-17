@@ -855,6 +855,54 @@
             display: none !important;
         }
 
+        #levelPanel {
+            background: #11182b !important;
+            border: 1px solid #d5def7 !important;
+            border-radius: 14px !important;
+            padding: 20px;
+        }
+
+        #levelControls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(74px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .level-btn {
+            min-height: 54px;
+            border-radius: 10px;
+            border: 1px solid #2b3857;
+            background: #121a2e !important;
+            color: #dbe5ff !important;
+            font-weight: 900;
+            line-height: 1.1;
+            transition: transform .15s ease, border-color .15s ease, background .15s ease;
+        }
+
+        .level-btn span {
+            display: block;
+            color: #9daccc;
+            font-size: 11px;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        .level-btn:hover {
+            transform: translateY(-1px);
+            border-color: #9badff;
+        }
+
+        .level-btn.is-active {
+            background: #253765 !important;
+            border-color: #9badff;
+            color: #ffffff !important;
+        }
+
+        .level-btn.is-active span {
+            color: #dbe5ff;
+        }
+
     </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen flex flex-col bg-gray-50">
@@ -936,6 +984,17 @@
                         <p id="statAccuracy" class="text-xl font-bold text-gray-900">100%</p>
                     </div>
                 </div>
+            </div>
+
+            <div id="levelPanel">
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
+                    <div>
+                        <p class="text-xs font-black uppercase tracking-wide text-blue-300">Nivel actual</p>
+                        <h3 class="text-xl font-black text-white">Nivel <span id="currentLevelLabel">1</span></h3>
+                    </div>
+                    <p class="text-sm font-bold text-slate-300">Top <span id="levelWordCount">10</span> palabras mas comunes</p>
+                </div>
+                <div id="levelControls" aria-label="Selector de nivel"></div>
             </div>
 
             <!-- Quick Mode Launchers -->
@@ -2820,6 +2879,8 @@
         let currentCardIndex = 0;
         let isAnswerShown = false;
         let studyMode = 'home'; 
+        let activeLevel = 1;
+        const levelSize = 10;
         let autoplayEnabled = true;
         let masteredCount = 0;
         let correctStreak = 0;
@@ -2858,6 +2919,9 @@
         const statTotal = document.getElementById('statTotal');
         const statStreak = document.getElementById('statStreak');
         const statAccuracy = document.getElementById('statAccuracy');
+        const levelControls = document.getElementById('levelControls');
+        const currentLevelLabel = document.getElementById('currentLevelLabel');
+        const levelWordCount = document.getElementById('levelWordCount');
         const practiceLaunchers = document.getElementById('practiceLaunchers');
         const practiceView = document.getElementById('practiceView');
         const practiceKicker = document.getElementById('practiceKicker');
@@ -3053,16 +3117,50 @@
 
         function updateStatsUI() {
             statMastered.textContent = masteredCount;
-            statTotal.textContent = vocabulary.length;
+            statTotal.textContent = `${getLevelLimit()} / ${vocabulary.length}`;
             statStreak.textContent = `${correctStreak} correctas`;
             const accuracy = totalAnswered > 0 ? Math.round((masteredCount / totalAnswered) * 100) : 100;
             statAccuracy.textContent = `${accuracy}%`;
         }
 
+        function getMaxLevel() {
+            return Math.ceil(vocabulary.length / levelSize);
+        }
+
+        function getLevelLimit() {
+            return Math.min(activeLevel * levelSize, vocabulary.length);
+        }
+
+        function getLevelVocabulary() {
+            return vocabulary.slice(0, getLevelLimit());
+        }
+
+        function renderLevelControls() {
+            if (!levelControls) return;
+            const maxLevel = getMaxLevel();
+            levelControls.innerHTML = Array.from({ length: maxLevel }, (_, index) => {
+                const level = index + 1;
+                const limit = Math.min(level * levelSize, vocabulary.length);
+                const activeClass = level === activeLevel ? ' is-active' : '';
+                return `<button type="button" class="level-btn${activeClass}" onclick="setLevel(${level})">Nivel ${level}<span>Top ${limit}</span></button>`;
+            }).join('');
+            if (currentLevelLabel) currentLevelLabel.textContent = activeLevel;
+            if (levelWordCount) levelWordCount.textContent = getLevelLimit();
+        }
+
+        function setLevel(level) {
+            activeLevel = Math.max(1, Math.min(level, getMaxLevel()));
+            renderLevelControls();
+            updateStatsUI();
+            if (['word', 'sentence', 'write'].includes(studyMode)) resetDeck();
+            if (['learn', 'test', 'match'].includes(studyMode)) setPracticeMode(studyMode);
+        }
+
         function getFilteredVocabulary() {
             const searchTerm = searchInput.value.toLowerCase();
-            if (!searchTerm) return [...vocabulary];
-            return vocabulary.filter(item => {
+            const levelVocabulary = getLevelVocabulary();
+            if (!searchTerm) return [...levelVocabulary];
+            return levelVocabulary.filter(item => {
                 return item.word.toLowerCase().includes(searchTerm) ||
                        item.pinyin.toLowerCase().includes(searchTerm) ||
                        item.eng.toLowerCase().includes(searchTerm) ||
@@ -3627,13 +3725,13 @@
             practiceProgress.textContent = `${testState.index + 1} / ${testState.cards.length}`;
             practiceScore.textContent = `Score: ${testState.score}`;
             if (type === 'True/False') {
-                const shown = Math.random() > 0.5 ? card : shuffle(vocabulary.filter(item => item.word !== card.word))[0];
+                const shown = Math.random() > 0.5 ? card : shuffle(getFilteredVocabulary().filter(item => item.word !== card.word))[0];
                 practiceContent.innerHTML = `<div class="text-center space-y-5"><p class="text-sm font-bold text-gray-500">True or false?</p><p class="thai-text text-5xl font-black">${card.word}</p><p class="text-2xl font-black text-gray-800">${shown.eng}</p><div class="grid grid-cols-2 gap-3"><button class="choice-btn text-center" onclick="submitTestAnswer(${shown.word === card.word}, 'True/False')">True</button><button class="choice-btn text-center" onclick="submitTestAnswer(${shown.word !== card.word}, 'True/False')">False</button></div></div>`;
             } else if (type === 'Multiple Choice') {
-                const choices = makeChoices(card, vocabulary);
+                const choices = makeChoices(card, getFilteredVocabulary());
                 practiceContent.innerHTML = `<div class="space-y-5"><div class="text-center"><p class="thai-text text-5xl font-black">${card.word}</p><p class="font-mono text-blue-600">${card.pinyin}</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${choices.map(choice => `<button class="choice-btn" onclick="submitTestAnswer(${choice.word === card.word}, 'Multiple Choice')">${choice.eng}</button>`).join('')}</div></div>`;
             } else if (type === 'Match') {
-                const pair = makeChoices(card, vocabulary).slice(0, 3);
+                const pair = makeChoices(card, getFilteredVocabulary()).slice(0, 3);
                 practiceContent.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-5"><div class="space-y-2">${pair.map(item => `<div class="match-tile thai-text">${item.word}</div>`).join('')}</div><div class="space-y-2">${shuffle(pair).map(item => `<button class="choice-btn" onclick="submitTestAnswer(${item.word === card.word}, 'Match')">${item.eng}</button>`).join('')}</div></div>`;
             } else {
                 practiceContent.innerHTML = `<div class="space-y-5 text-center"><p class="thai-text text-5xl font-black">${card.word}</p><input id="testWriteInput" class="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl text-center text-lg font-bold focus:outline-none focus:border-emerald-600" autocomplete="off" placeholder="English meaning or pinyin"><button onclick="submitTestWrite()" class="w-full py-3 bg-emerald-600 text-white rounded-xl font-black">Check</button></div>`;
@@ -3741,6 +3839,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             if (btnAutoplay) btnAutoplay.classList.add('is-active');
+            renderLevelControls();
             goHome();
         });
     </script>
