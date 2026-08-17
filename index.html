@@ -40,6 +40,14 @@
             user-select: text;
         }
 
+        .sentence-blurred {
+            filter: blur(9px);
+            opacity: .55;
+            user-select: none;
+            pointer-events: none;
+            transition: filter .18s ease, opacity .18s ease;
+        }
+
         .card-revealed .group:hover .tooltip-box {
             display: flex !important;
         }
@@ -383,7 +391,7 @@
 
         #btnAudioFront:hover { background: var(--ui-blue-soft) !important; }
 
-        /* The three 'Escuchar oración' buttons injected by JS */
+        /* Inline controls inside generated study content */
         #frontContentContainer button {
             background: #fff !important;
             color: var(--ui-blue) !important;
@@ -1057,6 +1065,7 @@
             <div id="studyRightTools" aria-label="Herramientas de estudio">
                 <button type="button" onclick="resetDeck()">🔀 <span>Mezclar</span></button>
                 <button type="button" id="btnAutoplay" onclick="toggleAutoplay()">▶ <span>Audio auto</span></button>
+                <button type="button" id="btnAudioOnly" onclick="toggleAudioOnly()">◉ <span>Solo audio</span></button>
                 <button type="button" onclick="goHome()">⌂ <span>Inicio</span></button>
             </div>
 
@@ -2883,6 +2892,7 @@
         let activeLevel = 1;
         const levelSize = 10;
         let autoplayEnabled = true;
+        let audioOnlyEnabled = false;
         let masteredCount = 0;
         let correctStreak = 0;
         let totalAnswered = 0;
@@ -2915,6 +2925,7 @@
         const cardCounterTop = document.getElementById('cardCounterTop');
         const cardTypeLabel = document.getElementById('cardTypeLabel');
         const btnAutoplay = document.getElementById('btnAutoplay');
+        const btnAudioOnly = document.getElementById('btnAudioOnly');
 
         const statMastered = document.getElementById('statMastered');
         const statTotal = document.getElementById('statTotal');
@@ -3106,6 +3117,21 @@
             showToast(autoplayEnabled ? 'Audio automático activado 🔊' : 'Audio automático desactivado');
         }
 
+        function updateAudioOnlyButton() {
+            if (!btnAudioOnly) return;
+            btnAudioOnly.classList.toggle('hidden', studyMode !== 'sentence');
+            btnAudioOnly.classList.toggle('is-active', audioOnlyEnabled);
+            const label = btnAudioOnly.querySelector('span');
+            if (label) label.textContent = audioOnlyEnabled ? 'Texto oculto' : 'Solo audio';
+        }
+
+        function toggleAudioOnly() {
+            audioOnlyEnabled = !audioOnlyEnabled;
+            updateAudioOnlyButton();
+            if (studyMode === 'sentence') renderCard();
+            showToast(audioOnlyEnabled ? 'Texto oculto: escucha primero' : 'Texto visible');
+        }
+
         function shuffle(array) {
             let currentIndex = array.length, randomIndex;
             while (currentIndex != 0) {
@@ -3222,6 +3248,7 @@
             homeView.classList.remove('hidden');
             if (practiceLaunchers) practiceLaunchers.classList.remove('hidden');
             setActiveNav('home');
+            updateAudioOnlyButton();
             updateStatsUI();
         }
 
@@ -3231,6 +3258,7 @@
             hideAllViews();
             studyView.classList.remove('hidden');
             setActiveNav(mode);
+            updateAudioOnlyButton();
             
             resetDeck();
         }
@@ -3310,6 +3338,15 @@
             `;
         }
 
+        function generateFullSentenceHTML(card, blurred = false) {
+            return `
+                <div class="${blurred ? 'sentence-blurred' : ''}">
+                    <p class="thai-text font-black text-4xl md:text-5xl text-gray-900 leading-relaxed">${card.thaiSent}</p>
+                    <p class="font-mono text-lg md:text-xl text-fuchsia-600 font-bold mt-4">${card.pinyinSent}</p>
+                </div>
+            `;
+        }
+
         function generateSentenceTranslationHTML(card, forceReveal = false) {
             const tokens = card.breakdown || [{ thai: card.word, pinyin: card.pinyin, meaning: card.eng, color: "bg-amber-100 text-amber-900 border-amber-300" }];
             const wrapperClass = forceReveal ? "" : "color-coded-tokens";
@@ -3381,9 +3418,6 @@
                         <span class="thai-text font-bold text-4xl md:text-5xl text-gray-900 block my-2">${card.word}</span>
                         <span class="font-mono text-lg text-fuchsia-600 font-semibold">${card.pinyin}</span>
                     </div>
-                    <button type="button" onclick="audioUnlocked = true; speakText(activeDeck[currentCardIndex].thaiSent)" class="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-fuchsia-50 hover:bg-fuchsia-100 text-fuchsia-700 rounded-full font-semibold text-sm transition-colors border border-fuchsia-100 shadow-sm">
-                        🔊 Escuchar oración
-                    </button>
                 `;
                 backContentContainer.innerHTML = `
                     <div class="mb-3">
@@ -3399,17 +3433,15 @@
                 textToSpeak = card.word;
                 textFallback = card.pinyin;
             } else if (studyMode === 'sentence') {
-                helperText.textContent = "Modo Oraciones: Lee y escucha la frase; revela la respuesta cuando quieras comprobarla";
+                helperText.textContent = audioOnlyEnabled ? "Modo Oraciones: escucha el audio e intenta reconocer la frase antes de revelar" : "Modo Oraciones: lee y escucha la frase completa";
                 frontContentContainer.innerHTML = `
-                    <div class="py-2">${generateSentenceThaiHTML(card, false)}</div>
-                    <div class="mt-2">${generateSentencePinyinHTML(card, false)}</div>
-                    <button type="button" onclick="audioUnlocked = true; speakText(activeDeck[currentCardIndex].thaiSent)" class="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-fuchsia-50 hover:bg-fuchsia-100 text-fuchsia-700 rounded-full font-semibold text-sm transition-colors border border-fuchsia-100 shadow-sm">
-                        🔊 Escuchar oración
-                    </button>
+                    <div class="py-2">${generateFullSentenceHTML(card, audioOnlyEnabled)}</div>
                 `;
                 backContentContainer.innerHTML = `
                     <div class="mb-3">
-                        <div class="my-2">${generateSentenceTranslationHTML(card, true)}</div>
+                        <p class="text-2xl text-gray-800 font-black mb-2">${card.engSent}</p>
+                        <p class="thai-text text-xl text-gray-700 font-bold">${card.thaiSent}</p>
+                        <p class="font-mono text-sm text-fuchsia-600 font-bold mt-1">${card.pinyinSent}</p>
                     </div>
                     <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 shadow-inner flex flex-col sm:flex-row items-center justify-center gap-4">
                         <div class="text-center">
@@ -3428,9 +3460,6 @@
                         <span class="thai-text font-bold text-3xl md:text-4xl text-gray-900 block my-2">${card.word}</span>
                         <span class="font-mono text-base text-fuchsia-600 font-semibold">${card.pinyin}</span>
                     </div>
-                    <button type="button" onclick="audioUnlocked = true; speakText(activeDeck[currentCardIndex].thaiSent)" class="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-fuchsia-50 hover:bg-fuchsia-100 text-fuchsia-700 rounded-full font-semibold text-sm transition-colors border border-fuchsia-100 shadow-sm">
-                        🔊 Escuchar oración
-                    </button>
                     <p class="text-sm text-gray-500 mb-3 mt-4">Traduzca al español o fonética:</p>
                     <div class="max-w-xs mx-auto">
                         <input type="text" id="userInputWrite" autofocus class="w-full text-center px-4 py-3 border-2 border-fuchsia-300 rounded-xl focus:outline-none focus:border-fuchsia-600 text-lg shadow-sm" placeholder="Escribe aquí..." autocomplete="off">
