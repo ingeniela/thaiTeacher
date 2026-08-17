@@ -992,7 +992,7 @@
                         <p class="text-xs font-black uppercase tracking-wide text-blue-300">Nivel actual</p>
                         <h3 class="text-xl font-black text-white">Nivel <span id="currentLevelLabel">1</span></h3>
                     </div>
-                    <p class="text-sm font-bold text-slate-300">Top <span id="levelWordCount">10</span> palabras mas comunes</p>
+                    <p class="text-sm font-bold text-slate-300">Palabras <span id="levelWordCount">1-10</span></p>
                 </div>
                 <div id="levelControls" aria-label="Selector de nivel"></div>
             </div>
@@ -3117,7 +3117,7 @@
 
         function updateStatsUI() {
             statMastered.textContent = masteredCount;
-            statTotal.textContent = `${getLevelLimit()} / ${vocabulary.length}`;
+            statTotal.textContent = `${getLevelVocabulary().length} / ${vocabulary.length}`;
             statStreak.textContent = `${correctStreak} correctas`;
             const accuracy = totalAnswered > 0 ? Math.round((masteredCount / totalAnswered) * 100) : 100;
             statAccuracy.textContent = `${accuracy}%`;
@@ -3127,12 +3127,16 @@
             return Math.ceil(vocabulary.length / levelSize);
         }
 
-        function getLevelLimit() {
-            return Math.min(activeLevel * levelSize, vocabulary.length);
+        function getLevelStart() {
+            return (activeLevel - 1) * levelSize;
+        }
+
+        function getLevelEnd(level = activeLevel) {
+            return Math.min(level * levelSize, vocabulary.length);
         }
 
         function getLevelVocabulary() {
-            return vocabulary.slice(0, getLevelLimit());
+            return vocabulary.slice(getLevelStart(), getLevelEnd());
         }
 
         function renderLevelControls() {
@@ -3140,12 +3144,13 @@
             const maxLevel = getMaxLevel();
             levelControls.innerHTML = Array.from({ length: maxLevel }, (_, index) => {
                 const level = index + 1;
-                const limit = Math.min(level * levelSize, vocabulary.length);
+                const start = index * levelSize + 1;
+                const end = getLevelEnd(level);
                 const activeClass = level === activeLevel ? ' is-active' : '';
-                return `<button type="button" class="level-btn${activeClass}" onclick="setLevel(${level})">Nivel ${level}<span>Top ${limit}</span></button>`;
+                return `<button type="button" class="level-btn${activeClass}" onclick="setLevel(${level})">Nivel ${level}<span>${start}-${end}</span></button>`;
             }).join('');
             if (currentLevelLabel) currentLevelLabel.textContent = activeLevel;
-            if (levelWordCount) levelWordCount.textContent = getLevelLimit();
+            if (levelWordCount) levelWordCount.textContent = `${getLevelStart() + 1}-${getLevelEnd()}`;
         }
 
         function setLevel(level) {
