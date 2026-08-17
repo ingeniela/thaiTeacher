@@ -3339,12 +3339,24 @@
         }
 
         function generateFullSentenceHTML(card, blurred = false) {
+            const highlightedThai = highlightSentenceTarget(card.thaiSent, card.word);
             return `
                 <div class="${blurred ? 'sentence-blurred' : ''}">
-                    <p class="thai-text font-black text-4xl md:text-5xl text-gray-900 leading-relaxed">${card.thaiSent}</p>
+                    <p class="thai-text font-black text-4xl md:text-5xl text-gray-900 leading-relaxed">${highlightedThai}</p>
                     <p class="font-mono text-lg md:text-xl text-fuchsia-600 font-bold mt-4">${card.pinyinSent}</p>
                 </div>
             `;
+        }
+
+        function highlightSentenceTarget(sentence, target) {
+            const alternatives = String(target || '').split('/').map(part => part.trim()).filter(Boolean);
+            let highlighted = sentence;
+            for (const alternative of alternatives) {
+                if (highlighted.includes(alternative)) {
+                    return highlighted.replace(alternative, `<span class="bg-amber-100 text-amber-900 border-2 border-amber-300 rounded-xl px-3 py-1 inline-block">${alternative}</span>`);
+                }
+            }
+            return highlighted;
         }
 
         function generateSentenceTranslationHTML(card, forceReveal = false) {
