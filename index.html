@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -946,6 +946,19 @@
             --app-accent-strong: #ffb35c;
         }
 
+        html[data-theme="light"] {
+            --app-bg: #f3f6fb;
+            --app-panel: #ffffff;
+            --app-panel-2: #f7f9fd;
+            --app-panel-3: #edf2fb;
+            --app-border: rgba(31,41,55,.14);
+            --app-border-strong: rgba(66,85,255,.34);
+            --app-text: #111827;
+            --app-muted: #64748b;
+            --app-accent: #4255ff;
+            --app-accent-strong: #e57922;
+        }
+
         html,
         body {
             background: var(--app-bg) !important;
@@ -988,6 +1001,18 @@
             background: var(--app-panel) !important;
             color: var(--app-text) !important;
             border-color: var(--app-border) !important;
+        }
+
+        .theme-toggle {
+            min-height: 40px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid var(--app-border);
+            background: var(--app-panel-2);
+            color: var(--app-text);
+            font-size: 13px;
+            font-weight: 900;
+            box-shadow: none;
         }
 
         #modeNav {
@@ -1149,7 +1174,7 @@
         #practiceProgress,
         #practiceScore {
             background: var(--app-panel-2) !important;
-            color: #dbe5ff !important;
+            color: var(--app-text) !important;
             border: 1px solid var(--app-border) !important;
             box-shadow: none !important;
         }
@@ -1177,16 +1202,36 @@
         }
 
         #cardExampleLabel {
-            color: #dbe5ff !important;
+            color: var(--app-text) !important;
             font-size: 13px !important;
             font-weight: 800 !important;
+        }
+
+        .card-example-toggle {
+            justify-self: start;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 9px;
+            border: 1px solid var(--app-border);
+            background: var(--app-panel-2);
+            color: var(--app-text) !important;
+            cursor: pointer;
+            box-shadow: none;
+        }
+
+        .card-example-panel {
+            margin: 14px 34px 0;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--app-border);
+            background: var(--app-panel-2);
         }
 
         .card-icon-btn,
         #btnAudioFront,
         #frontContentContainer button {
             background: var(--app-panel-2) !important;
-            color: #dbe5ff !important;
+            color: var(--app-text) !important;
             border-color: var(--app-border) !important;
         }
 
@@ -1203,6 +1248,25 @@
             border-color: var(--app-border) !important;
         }
 
+        .sentence-token {
+            border-width: 1px !important;
+            box-shadow: none !important;
+        }
+
+        .token-color-0 { background: #fff3bf !important; color: #5c3b00 !important; border-color: #f59f00 !important; }
+        .token-color-1 { background: #dbeafe !important; color: #123c69 !important; border-color: #60a5fa !important; }
+        .token-color-2 { background: #d1fae5 !important; color: #064e3b !important; border-color: #34d399 !important; }
+        .token-color-3 { background: #ffe4e6 !important; color: #881337 !important; border-color: #fb7185 !important; }
+        .token-color-4 { background: #ede9fe !important; color: #4c1d95 !important; border-color: #a78bfa !important; }
+        .token-color-5 { background: #cffafe !important; color: #164e63 !important; border-color: #22d3ee !important; }
+
+        html[data-theme="dark"] .token-color-0 { background: rgba(245,159,0,.18) !important; color: #ffe8a3 !important; border-color: rgba(245,159,0,.55) !important; }
+        html[data-theme="dark"] .token-color-1 { background: rgba(96,165,250,.18) !important; color: #bfdbfe !important; border-color: rgba(96,165,250,.55) !important; }
+        html[data-theme="dark"] .token-color-2 { background: rgba(52,211,153,.16) !important; color: #bbf7d0 !important; border-color: rgba(52,211,153,.52) !important; }
+        html[data-theme="dark"] .token-color-3 { background: rgba(251,113,133,.16) !important; color: #fecdd3 !important; border-color: rgba(251,113,133,.52) !important; }
+        html[data-theme="dark"] .token-color-4 { background: rgba(167,139,250,.18) !important; color: #ddd6fe !important; border-color: rgba(167,139,250,.55) !important; }
+        html[data-theme="dark"] .token-color-5 { background: rgba(34,211,238,.16) !important; color: #cffafe !important; border-color: rgba(34,211,238,.52) !important; }
+
         @media (max-width: 767px) {
             #homeView > div:first-child {
                 padding: 20px !important;
@@ -1210,6 +1274,9 @@
             #homeView > div:last-child button,
             #practiceLaunchers button {
                 min-height: 96px;
+            }
+            .card-example-panel {
+                margin: 12px 18px 0;
             }
         }
 
@@ -1239,6 +1306,7 @@
                         <button id="modeTest" onclick="setPracticeMode('test')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Test</button>
                         <button id="modeMatch" onclick="setPracticeMode('match')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Match</button>
                     </div>
+                    <button type="button" id="themeToggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Cambiar tema">Light</button>
 
                     <div class="w-full sm:w-48">
                         <div class="relative">
@@ -1376,13 +1444,14 @@
                 
                 <div id="cardProgressTrack" aria-hidden="true"><div id="cardProgressBar"></div></div>
                 <div class="quiz-card-top">
-                    <span id="cardExampleLabel">Ejemplo</span>
+                    <button type="button" id="cardExampleLabel" class="card-example-toggle">Ver ejemplo</button>
                     <div class="card-tool-row" aria-label="Herramientas de tarjeta">
                         <button type="button" id="btnWriteTool" class="card-icon-btn" title="Escribir">✎</button>
                         <button type="button" id="btnAudioFront" class="card-icon-btn" title="Escuchar">♪</button>
                         <button type="button" id="btnFavorite" class="card-icon-btn" title="Favorito">★</button>
                     </div>
                 </div>
+                <div id="cardExamplePanel" class="card-example-panel hidden"></div>
 
                 <!-- End of deck state -->
                 <div id="endScreen" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center p-8 text-center z-10">
@@ -3240,6 +3309,8 @@
         const studyLevelBadge = document.getElementById('studyLevelBadge');
         const practiceLevelBadge = document.getElementById('practiceLevelBadge');
         const cardExampleLabel = document.getElementById('cardExampleLabel');
+        const cardExamplePanel = document.getElementById('cardExamplePanel');
+        const themeToggle = document.getElementById('themeToggle');
         const practiceLaunchers = document.getElementById('practiceLaunchers');
         const practiceView = document.getElementById('practiceView');
         const practiceKicker = document.getElementById('practiceKicker');
@@ -3263,6 +3334,7 @@
         const masteryKey = 'thaiTeacherMastery';
         const leaderboardKey = 'thaiTeacherMatchLeaderboard';
         const favoritesKey = 'thaiTeacherFavorites';
+        const themeKey = 'thaiTeacherTheme';
 
         let systemVoices = [];
         let audioUnlocked = false;
@@ -3585,17 +3657,22 @@
             renderCard();
         }
 
-        const sentenceTokenColors = [
-            "bg-amber-100 text-amber-900 border-amber-300",
-            "bg-sky-100 text-sky-900 border-sky-300",
-            "bg-emerald-100 text-emerald-900 border-emerald-300",
-            "bg-rose-100 text-rose-900 border-rose-300",
-            "bg-violet-100 text-violet-900 border-violet-300",
-            "bg-lime-100 text-lime-900 border-lime-300"
-        ];
+        const sentenceTokenColors = ["token-color-0", "token-color-1", "token-color-2", "token-color-3", "token-color-4", "token-color-5"];
 
         function splitWords(value) {
             return String(value || '').replace(/[.?!]/g, '').split(/\s+/).map(part => part.trim()).filter(Boolean);
+        }
+
+        function cleanSentenceWord(value) {
+            return String(value || '').replace(/[.?!,]/g, '').trim();
+        }
+
+        function fallbackMeaningForToken(englishWords, index, total) {
+            if (englishWords[index]) return englishWords[index];
+            const remaining = englishWords.slice(index).join(' ');
+            if (remaining) return remaining;
+            if (index === total - 1 && englishWords.length) return englishWords[englishWords.length - 1];
+            return '';
         }
 
         function getSentenceTokens(card) {
@@ -3605,7 +3682,7 @@
                     thai: token.thai || '',
                     pinyin: token.pinyin || '',
                     meaning: token.meaning || '',
-                    color: token.color || sentenceTokenColors[index % sentenceTokenColors.length]
+                    color: sentenceTokenColors[index % sentenceTokenColors.length]
                 }));
             }
 
@@ -3613,42 +3690,60 @@
             const pinyinWords = splitWords(card.pinyinSent);
             const englishWords = splitWords(card.engSent);
             const target = breakdown[0] || { thai: card.word, pinyin: card.pinyin, meaning: card.eng };
+            const targetAlternatives = String(card.word || '').split('/').map(part => cleanSentenceWord(part)).filter(Boolean);
+            const totalTokens = Math.max(thaiWords.length, pinyinWords.length, englishWords.length, 1);
 
-            if (thaiWords.length <= 1) {
+            if (totalTokens <= 1) {
                 return [{
                     thai: card.thaiSent || card.word,
                     pinyin: card.pinyinSent || card.pinyin,
                     meaning: card.engSent || card.eng,
-                    color: target.color || sentenceTokenColors[0]
+                    color: sentenceTokenColors[0]
                 }];
             }
 
-            return thaiWords.map((thai, index) => {
-                const isTarget = thai === card.word || String(card.word || '').split('/').map(part => part.trim()).includes(thai);
-                const isLast = index === thaiWords.length - 1;
-                const remainingPinyin = pinyinWords.slice(index).join(' ');
-                const remainingEnglish = englishWords.slice(index).join(' ');
+            return Array.from({ length: totalTokens }, (_, index) => {
+                const thai = thaiWords[index] || (index > 0 ? thaiWords[thaiWords.length - 1] : card.word);
+                const pinyin = pinyinWords[index] || '';
+                const meaning = fallbackMeaningForToken(englishWords, index, totalTokens);
+                const isTarget = targetAlternatives.includes(cleanSentenceWord(thai)) || pinyin.toLowerCase() === String(target.pinyin || '').toLowerCase();
                 return {
                     thai,
-                    pinyin: isTarget ? target.pinyin : (isLast ? remainingPinyin : pinyinWords[index]) || card.pinyinSent,
-                    meaning: isTarget ? target.meaning : (isLast ? remainingEnglish : englishWords[index]) || card.engSent,
-                    color: isTarget ? (target.color || sentenceTokenColors[index % sentenceTokenColors.length]) : sentenceTokenColors[index % sentenceTokenColors.length]
+                    pinyin: isTarget ? (target.pinyin || pinyin) : pinyin,
+                    meaning: isTarget ? (target.meaning || meaning) : meaning,
+                    color: sentenceTokenColors[index % sentenceTokenColors.length]
                 };
             });
         }
 
-        function softenTokenColor(color) {
-            return color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-');
+        function tokenClass(token, size = 'normal') {
+            const sizeClass = size === 'large'
+                ? 'px-3 py-1.5 rounded-xl font-bold text-2xl md:text-3xl'
+                : 'px-2 py-0.5 rounded-lg text-sm md:text-base font-semibold';
+            return `sentence-token ${token.color} border ${sizeClass}`;
+        }
+
+        function getThaiDisplayTokens(tokens) {
+            return tokens.reduce((groups, token) => {
+                const last = groups[groups.length - 1];
+                if (last && last.thai === token.thai) {
+                    last.pinyin = [last.pinyin, token.pinyin].filter(Boolean).join(' / ');
+                    last.meaning = [last.meaning, token.meaning].filter(Boolean).join(' / ');
+                    return groups;
+                }
+                groups.push({ ...token });
+                return groups;
+            }, []);
         }
 
         function generateSentenceThaiHTML(card, forceReveal = false) {
-            const tokens = getSentenceTokens(card);
+            const tokens = getThaiDisplayTokens(getSentenceTokens(card));
             const wrapperClass = forceReveal ? "" : "color-coded-tokens";
             return `
                 <div class="flex flex-wrap justify-center items-center gap-2 mb-2 ${wrapperClass}">
                     ${tokens.map(t => `
                         <div class="group relative inline-block">
-                            <span class="${t.color} border-2 px-3 py-1.5 rounded-xl font-bold text-2xl md:text-3xl thai-text shadow-sm inline-block cursor-pointer">
+                            <span class="${tokenClass(t, 'large')} thai-text inline-block cursor-pointer">
                                 ${t.thai}
                             </span>
                             <div class="tooltip-box absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden flex-col items-center z-20 pointer-events-none">
@@ -3671,7 +3766,7 @@
                 <div class="flex flex-wrap justify-center items-center gap-2 ${wrapperClass}">
                     ${tokens.map(t => `
                         <div class="group relative inline-block">
-                            <span class="${softenTokenColor(t.color)} border px-2 py-0.5 rounded-lg font-mono text-sm md:text-base font-semibold inline-block cursor-pointer">
+                            <span class="${tokenClass(t)} font-mono inline-block cursor-pointer">
                                 ${t.pinyin}
                             </span>
                             <div class="tooltip-box absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden flex-col items-center z-20 pointer-events-none">
@@ -3723,7 +3818,7 @@
                 <div class="flex flex-wrap justify-center items-center gap-2 ${wrapperClass}">
                     ${tokens.map(t => `
                         <div class="group relative inline-block">
-                            <span class="${softenTokenColor(t.color)} border px-2 py-0.5 rounded-lg text-sm md:text-base font-medium inline-block cursor-pointer">
+                            <span class="${tokenClass(t)} inline-block cursor-pointer">
                                 ${t.meaning}
                             </span>
                             <div class="tooltip-box absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden flex-col items-center z-20 pointer-events-none">
@@ -3736,6 +3831,42 @@
                     `).join('')}
                 </div>
             `;
+        }
+
+        function setTheme(theme) {
+            const nextTheme = theme === 'light' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            localStorage.setItem(themeKey, nextTheme);
+            if (themeToggle) themeToggle.textContent = nextTheme === 'dark' ? 'Light' : 'Dark';
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        function setExampleVisible(visible) {
+            if (!cardExamplePanel || !cardExampleLabel || currentCardIndex >= activeDeck.length) return;
+            const card = activeDeck[currentCardIndex];
+            cardExamplePanel.classList.toggle('hidden', !visible);
+            cardExampleLabel.textContent = visible ? 'Ocultar ejemplo' : 'Ver ejemplo';
+            cardExampleLabel.setAttribute('aria-expanded', String(visible));
+            if (visible) {
+                cardExamplePanel.innerHTML = `
+                    <div class="space-y-2">
+                        ${generateSentenceThaiHTML(card, true)}
+                        ${generateSentencePinyinHTML(card, true)}
+                        ${generateSentenceTranslationHTML(card, true)}
+                    </div>
+                `;
+            } else {
+                cardExamplePanel.innerHTML = '';
+            }
+        }
+
+        function toggleCardExample() {
+            const isVisible = cardExamplePanel && !cardExamplePanel.classList.contains('hidden');
+            setExampleVisible(!isVisible);
         }
 
         function renderCard() {
@@ -3777,9 +3908,12 @@
                 cardProgressBar.style.width = `${progress}%`;
             }
             if (cardExampleLabel) {
-                cardExampleLabel.textContent = `Ejemplo: ${card.engSent}`;
+                cardExampleLabel.textContent = 'Ver ejemplo';
                 cardExampleLabel.title = card.thaiSent;
+                cardExampleLabel.onclick = toggleCardExample;
+                cardExampleLabel.setAttribute('aria-expanded', 'false');
             }
+            setExampleVisible(false);
 
             let textToSpeak = "";
             let textFallback = "";
@@ -4244,6 +4378,7 @@
         });
 
         window.addEventListener('DOMContentLoaded', () => {
+            setTheme(localStorage.getItem(themeKey) || document.documentElement.getAttribute('data-theme') || 'dark');
             if (btnAutoplay) btnAutoplay.classList.add('is-active');
             renderLevelControls();
             goHome();
