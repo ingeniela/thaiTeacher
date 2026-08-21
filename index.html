@@ -2961,7 +2961,7 @@
         let systemVoices = [];
         let audioUnlocked = false;
         let currentUtterance = null;
-        let currentAudio = null;
+        let voicesReadyRetry = null;
         function populateVoices() {
             if ('speechSynthesis' in window) {
                 systemVoices = window.speechSynthesis.getVoices();
@@ -2994,54 +2994,39 @@
             const cleanText = (text || '').replace(/[\/\(\)]/g, '').trim();
             if (!cleanText) return;
 
-            const playGoogleTTS = () => {
-                try {
-                    if (currentAudio) {
-                        currentAudio.pause();
-                        currentAudio = null;
-                    }
-                    const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=th&client=gtx&q=${encodeURIComponent(cleanText)}`;
-                    currentAudio = new Audio(url);
-                    currentAudio.play().catch(e => {
-                        console.warn("Google TTS playback blocked or failed:", e);
-                        showToast('No se pudo reproducir el audio.');
-                    });
-                } catch(err) {
-                    console.error("TTS error:", err);
-                    showToast('No se pudo reproducir el audio.');
-                }
-            };
-
             if (!('speechSynthesis' in window)) {
-                playGoogleTTS();
+                showToast('Tu navegador no tiene audio de voz disponible.');
                 return;
             }
 
             if (systemVoices.length === 0) populateVoices();
+            if (systemVoices.length === 0 && !voicesReadyRetry) {
+                voicesReadyRetry = setTimeout(() => {
+                    voicesReadyRetry = null;
+                    populateVoices();
+                    speakText(cleanText);
+                }, 250);
+                return;
+            }
+
             const thaiVoice = systemVoices.find(v => v.lang && (v.lang.toLowerCase().includes('th') || v.lang.toLowerCase().includes('tha')));
 
-            if (thaiVoice) {
-                try {
-                    if (currentAudio) {
-                        currentAudio.pause();
-                        currentAudio = null;
-                    }
-                    currentUtterance = new SpeechSynthesisUtterance(cleanText);
-                    currentUtterance.lang = 'th-TH';
-                    currentUtterance.rate = 0.85;
-                    currentUtterance.pitch = 1.0;
-                    currentUtterance.voice = thaiVoice;
-                    currentUtterance.onerror = () => {
-                        playGoogleTTS();
-                    };
-                    currentUtterance.onend = () => { currentUtterance = null; };
-                    window.speechSynthesis.cancel();
-                    window.speechSynthesis.speak(currentUtterance);
-                } catch (err) {
-                    playGoogleTTS();
-                }
-            } else {
-                playGoogleTTS();
+            try {
+                currentUtterance = new SpeechSynthesisUtterance(cleanText);
+                currentUtterance.lang = 'th-TH';
+                currentUtterance.rate = 0.85;
+                currentUtterance.pitch = 1.0;
+                if (thaiVoice) currentUtterance.voice = thaiVoice;
+                currentUtterance.onerror = (event) => {
+                    console.warn("Speech synthesis error:", event);
+                    showToast('No se pudo reproducir el audio en este navegador.');
+                };
+                currentUtterance.onend = () => { currentUtterance = null; };
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(currentUtterance);
+            } catch (err) {
+                console.error("TTS error:", err);
+                showToast('No se pudo reproducir el audio.');
             }
         }
 
