@@ -48,7 +48,7 @@
             transition: filter .18s ease, opacity .18s ease;
         }
 
-        .card-revealed .group:hover .tooltip-box {
+        .group:hover .tooltip-box {
             display: flex !important;
         }
     
@@ -475,11 +475,25 @@
             transform: translateY(-1px);
         }
 
-        #studyRightTools button:first-child,
         #studyRightTools button.is-active {
             background: var(--ui-blue);
             color: #fff;
             border-color: var(--ui-blue);
+        }
+
+        #studyLevelBadge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 14px;
+            border: 1px solid #d8defd;
+            border-radius: 9px;
+            background: #eef2ff;
+            color: #3150c8;
+            font-size: 13px;
+            font-weight: 900;
+            white-space: nowrap;
         }
 
         #toast {
@@ -530,6 +544,9 @@
             #studyRightTools button {
                 flex: 1 0 auto;
                 justify-content: center;
+            }
+            #studyLevelBadge {
+                flex: 1 0 auto;
             }
         }
 
@@ -773,6 +790,9 @@
             color: #f8fafc !important;
             font-size: 15px;
             font-weight: 900;
+            min-width: 0;
+            line-height: 1.25;
+            overflow-wrap: anywhere;
         }
 
         .card-tool-row {
@@ -1063,6 +1083,7 @@
 
             <!-- Quick tools inspired by the reference layout -->
             <div id="studyRightTools" aria-label="Herramientas de estudio">
+                <span id="studyLevelBadge">Nivel 1</span>
                 <button type="button" onclick="resetDeck()">🔀 <span>Mezclar</span></button>
                 <button type="button" id="btnAutoplay" onclick="toggleAutoplay()">▶ <span>Audio auto</span></button>
                 <button type="button" id="btnAudioOnly" onclick="toggleAudioOnly()">◉ <span>Solo audio</span></button>
@@ -1074,7 +1095,7 @@
                 
                 <div id="cardProgressTrack" aria-hidden="true"><div id="cardProgressBar"></div></div>
                 <div class="quiz-card-top">
-                    <span id="cardExampleLabel">💡 Mostrar ejemplo</span>
+                    <span id="cardExampleLabel">💡 Ejemplo</span>
                     <div class="card-tool-row" aria-label="Herramientas de tarjeta">
                         <button type="button" id="btnWriteTool" class="card-icon-btn" title="Escribir">✎</button>
                         <button type="button" id="btnAudioFront" class="card-icon-btn" title="Escuchar">🔊</button>
@@ -1166,6 +1187,7 @@
                         <h2 id="practiceTitle" class="text-2xl font-black text-gray-900">Adaptive practice</h2>
                     </div>
                     <div class="flex flex-wrap gap-2 text-xs font-bold text-gray-600">
+                        <span id="practiceLevelBadge" class="bg-blue-100 text-blue-700 rounded-full px-3 py-1">Nivel 1</span>
                         <span id="practiceProgress" class="bg-gray-100 rounded-full px-3 py-1">0 / 0</span>
                         <span id="practiceScore" class="bg-gray-100 rounded-full px-3 py-1">Score: 0</span>
                         <button type="button" onclick="goHome()" class="bg-gray-900 text-white rounded-full px-3 py-1 font-bold">Inicio</button>
@@ -2934,6 +2956,9 @@
         const levelControls = document.getElementById('levelControls');
         const currentLevelLabel = document.getElementById('currentLevelLabel');
         const levelWordCount = document.getElementById('levelWordCount');
+        const studyLevelBadge = document.getElementById('studyLevelBadge');
+        const practiceLevelBadge = document.getElementById('practiceLevelBadge');
+        const cardExampleLabel = document.getElementById('cardExampleLabel');
         const practiceLaunchers = document.getElementById('practiceLaunchers');
         const practiceView = document.getElementById('practiceView');
         const practiceKicker = document.getElementById('practiceKicker');
@@ -3163,6 +3188,8 @@
             }).join('');
             if (currentLevelLabel) currentLevelLabel.textContent = activeLevel;
             if (levelWordCount) levelWordCount.textContent = `${getLevelStart() + 1}-${getLevelEnd()}`;
+            if (studyLevelBadge) studyLevelBadge.textContent = `Nivel ${activeLevel}`;
+            if (practiceLevelBadge) practiceLevelBadge.textContent = `Nivel ${activeLevel}`;
         }
 
         function setLevel(level) {
@@ -3277,9 +3304,64 @@
             renderCard();
         }
 
-        // Generadores de token con color coding sincronizado para Oraciones, Fonética y Traducción
+        const sentenceTokenColors = [
+            "bg-amber-100 text-amber-900 border-amber-300",
+            "bg-sky-100 text-sky-900 border-sky-300",
+            "bg-emerald-100 text-emerald-900 border-emerald-300",
+            "bg-rose-100 text-rose-900 border-rose-300",
+            "bg-violet-100 text-violet-900 border-violet-300",
+            "bg-lime-100 text-lime-900 border-lime-300"
+        ];
+
+        function splitWords(value) {
+            return String(value || '').replace(/[.?!]/g, '').split(/\s+/).map(part => part.trim()).filter(Boolean);
+        }
+
+        function getSentenceTokens(card) {
+            const breakdown = Array.isArray(card.breakdown) ? card.breakdown.filter(Boolean) : [];
+            if (breakdown.length > 1) {
+                return breakdown.map((token, index) => ({
+                    thai: token.thai || '',
+                    pinyin: token.pinyin || '',
+                    meaning: token.meaning || '',
+                    color: token.color || sentenceTokenColors[index % sentenceTokenColors.length]
+                }));
+            }
+
+            const thaiWords = splitWords(card.thaiSent);
+            const pinyinWords = splitWords(card.pinyinSent);
+            const englishWords = splitWords(card.engSent);
+            const target = breakdown[0] || { thai: card.word, pinyin: card.pinyin, meaning: card.eng };
+
+            if (thaiWords.length <= 1) {
+                return [{
+                    thai: card.thaiSent || card.word,
+                    pinyin: card.pinyinSent || card.pinyin,
+                    meaning: card.engSent || card.eng,
+                    color: target.color || sentenceTokenColors[0]
+                }];
+            }
+
+            return thaiWords.map((thai, index) => {
+                const isTarget = thai === card.word || String(card.word || '').split('/').map(part => part.trim()).includes(thai);
+                const isLast = index === thaiWords.length - 1;
+                const remainingPinyin = pinyinWords.slice(index).join(' ');
+                const remainingEnglish = englishWords.slice(index).join(' ');
+                return {
+                    thai,
+                    pinyin: isTarget ? target.pinyin : (isLast ? remainingPinyin : pinyinWords[index]) || card.pinyinSent,
+                    meaning: isTarget ? target.meaning : (isLast ? remainingEnglish : englishWords[index]) || card.engSent,
+                    color: isTarget ? (target.color || sentenceTokenColors[index % sentenceTokenColors.length]) : sentenceTokenColors[index % sentenceTokenColors.length]
+                };
+            });
+        }
+
+        function softenTokenColor(color) {
+            return color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-');
+        }
+
         function generateSentenceThaiHTML(card, forceReveal = false) {
-            const tokens = card.breakdown || [{ thai: card.word, pinyin: card.pinyin, meaning: card.eng, color: "bg-amber-100 text-amber-900 border-amber-300" }];
+            const tokens = getSentenceTokens(card);
             const wrapperClass = forceReveal ? "" : "color-coded-tokens";
             return `
                 <div class="flex flex-wrap justify-center items-center gap-2 mb-2 ${wrapperClass}">
@@ -3302,13 +3384,13 @@
         }
 
         function generateSentencePinyinHTML(card, forceReveal = false) {
-            const tokens = card.breakdown || [{ thai: card.word, pinyin: card.pinyin, meaning: card.eng, color: "bg-amber-100 text-amber-900 border-amber-300" }];
+            const tokens = getSentenceTokens(card);
             const wrapperClass = forceReveal ? "" : "color-coded-tokens";
             return `
                 <div class="flex flex-wrap justify-center items-center gap-2 ${wrapperClass}">
                     ${tokens.map(t => `
                         <div class="group relative inline-block">
-                            <span class="${t.color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-')} border px-2 py-0.5 rounded-lg font-mono text-sm md:text-base font-semibold inline-block cursor-pointer">
+                            <span class="${softenTokenColor(t.color)} border px-2 py-0.5 rounded-lg font-mono text-sm md:text-base font-semibold inline-block cursor-pointer">
                                 ${t.pinyin}
                             </span>
                             <div class="tooltip-box absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden flex-col items-center z-20 pointer-events-none">
@@ -3324,11 +3406,10 @@
         }
 
         function generateFullSentenceHTML(card, blurred = false) {
-            const highlightedThai = highlightSentenceTarget(card.thaiSent, card.word);
             return `
                 <div class="${blurred ? 'sentence-blurred' : ''}">
-                    <p class="thai-text font-black text-4xl md:text-5xl text-gray-900 leading-relaxed">${highlightedThai}</p>
-                    <p class="font-mono text-lg md:text-xl text-fuchsia-600 font-bold mt-4">${card.pinyinSent}</p>
+                    ${generateSentenceThaiHTML(card, true)}
+                    <div class="mt-4">${generateSentencePinyinHTML(card, true)}</div>
                 </div>
             `;
         }
@@ -3345,32 +3426,23 @@
         }
 
         function generateColorCodedFullSentenceHTML(card) {
-            const alternatives = String(card.word || '').split('/').map(part => part.trim()).filter(Boolean);
-            const target = alternatives.find(alternative => card.thaiSent.includes(alternative));
-            const thaiParts = target ? card.thaiSent.split(target) : [card.thaiSent];
-            const thaiHTML = target
-                ? thaiParts.map((part, index) => `
-                    ${part ? `<span class="bg-blue-100 text-blue-900 border-2 border-blue-300 px-3 py-1.5 rounded-xl font-bold text-2xl md:text-3xl thai-text shadow-sm inline-block">${part.trim()}</span>` : ''}
-                    ${index < thaiParts.length - 1 ? `<span class="bg-amber-100 text-amber-900 border-2 border-amber-300 px-3 py-1.5 rounded-xl font-bold text-2xl md:text-3xl thai-text shadow-sm inline-block">${target}</span>` : ''}
-                `).join('')
-                : `<span class="bg-blue-100 text-blue-900 border-2 border-blue-300 px-3 py-1.5 rounded-xl font-bold text-2xl md:text-3xl thai-text shadow-sm inline-block">${card.thaiSent}</span>`;
             return `
                 <div class="space-y-3 text-center">
-                    <div class="flex flex-wrap justify-center items-center gap-2">${thaiHTML}</div>
-                    <p class="font-mono text-base md:text-lg text-fuchsia-600 font-bold">${card.pinyinSent}</p>
-                    <p class="text-gray-600 text-sm italic">"${card.engSent}"</p>
+                    ${generateSentenceThaiHTML(card, true)}
+                    ${generateSentencePinyinHTML(card, true)}
+                    ${generateSentenceTranslationHTML(card, true)}
                 </div>
             `;
         }
 
         function generateSentenceTranslationHTML(card, forceReveal = false) {
-            const tokens = card.breakdown || [{ thai: card.word, pinyin: card.pinyin, meaning: card.eng, color: "bg-amber-100 text-amber-900 border-amber-300" }];
+            const tokens = getSentenceTokens(card);
             const wrapperClass = forceReveal ? "" : "color-coded-tokens";
             return `
                 <div class="flex flex-wrap justify-center items-center gap-2 ${wrapperClass}">
                     ${tokens.map(t => `
                         <div class="group relative inline-block">
-                            <span class="${t.color.replace('bg-', 'bg-opacity-15 bg-').replace('text-', 'text-opacity-90 text-')} border px-2 py-0.5 rounded-lg text-sm md:text-base font-medium inline-block cursor-pointer">
+                            <span class="${softenTokenColor(t.color)} border px-2 py-0.5 rounded-lg text-sm md:text-base font-medium inline-block cursor-pointer">
                                 ${t.meaning}
                             </span>
                             <div class="tooltip-box absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden flex-col items-center z-20 pointer-events-none">
@@ -3423,6 +3495,10 @@
                 const progress = activeDeck.length ? Math.min(((currentCardIndex + 1) / activeDeck.length) * 100, 100) : 0;
                 cardProgressBar.style.width = `${progress}%`;
             }
+            if (cardExampleLabel) {
+                cardExampleLabel.textContent = `💡 ${card.engSent}`;
+                cardExampleLabel.title = card.thaiSent;
+            }
 
             let textToSpeak = "";
             let textFallback = "";
@@ -3440,7 +3516,7 @@
                         <span class="text-6xl block mb-2">${card.emoji}</span>
                         <p class="text-3xl text-gray-800 font-bold mb-3">${card.eng}</p>
                     </div>
-                    <div class="bg-gray-50 rounded-2xl p-4 text-left border border-gray-100 shadow-inner">
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 shadow-inner">
                         ${generateColorCodedFullSentenceHTML(card)}
                     </div>
                 `;
@@ -3453,16 +3529,11 @@
                 `;
                 backContentContainer.innerHTML = `
                     <div class="mb-3">
+                        <span class="text-6xl block mb-2">${card.emoji}</span>
                         <p class="text-2xl text-gray-800 font-black mb-2">${card.engSent}</p>
-                        <p class="thai-text text-xl text-gray-700 font-bold">${card.thaiSent}</p>
-                        <p class="font-mono text-sm text-fuchsia-600 font-bold mt-1">${card.pinyinSent}</p>
                     </div>
-                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 shadow-inner flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <div class="text-center">
-                            <p class="text-sm text-gray-600 font-semibold mb-1">Palabra principal:</p>
-                            <p class="text-lg thai-text font-bold text-gray-900">${card.word} <span class="text-sm font-normal text-fuchsia-600 font-mono">(${card.pinyin})</span></p>
-                            <p class="text-sm text-gray-600">${card.eng}</p>
-                        </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 shadow-inner">
+                        ${generateColorCodedFullSentenceHTML(card)}
                     </div>
                 `;
                 textToSpeak = card.thaiSent;
@@ -3570,12 +3641,7 @@
             isAnswerShown = true;
             flashcardContainer.classList.add('card-revealed');
             
-            if (studyMode === 'word' || studyMode === 'sentence') {
-                cardEmojiContainer.classList.remove('hidden');
-                cardEmoji.textContent = activeDeck[currentCardIndex].emoji;
-            } else {
-                cardEmojiContainer.classList.add('hidden');
-            }
+            cardEmojiContainer.classList.add('hidden');
 
             helperText.textContent = "¡Respuesta revelada! Pasa el cursor sobre las palabras para ver su desglose interactivo";
             cardBack.classList.remove('hidden');
@@ -3716,7 +3782,7 @@
             practiceProgress.textContent = `${learnState.answered + 1} / ${limit}`;
             practiceScore.textContent = `Score: ${learnState.score}`;
             if (useWrite) {
-                practiceContent.innerHTML = `<div class="space-y-5"><div class="text-center"><p class="text-sm font-bold text-gray-500 mb-2">Write the English meaning or pinyin</p><p class="thai-text text-5xl font-black text-gray-900">${card.word}</p><p class="font-mono text-blue-600 mt-2">${card.pinyin}</p></div><input id="learnWriteInput" class="w-full px-4 py-3 border-2 border-blue-200 rounded-xl text-center text-lg font-bold focus:outline-none focus:border-blue-600" autocomplete="off" placeholder="Type answer"><button onclick="submitLearnWrite()" class="w-full py-3 bg-blue-600 text-white rounded-xl font-black">Check</button></div>`;
+                practiceContent.innerHTML = `<div class="space-y-5"><div class="text-center"><p class="text-sm font-bold text-gray-500 mb-2">Write the English meaning or pinyin</p><p class="thai-text text-5xl font-black text-gray-900">${card.word}</p><p class="font-mono text-blue-600 mt-2">${card.pinyin}</p></div><div class="bg-gray-50 rounded-xl p-4 border border-gray-100">${generateColorCodedFullSentenceHTML(card)}</div><input id="learnWriteInput" class="w-full px-4 py-3 border-2 border-blue-200 rounded-xl text-center text-lg font-bold focus:outline-none focus:border-blue-600" autocomplete="off" placeholder="Type answer"><button onclick="submitLearnWrite()" class="w-full py-3 bg-blue-600 text-white rounded-xl font-black">Check</button></div>`;
                 setTimeout(() => {
                     const input = document.getElementById('learnWriteInput');
                     if (input) {
@@ -3727,7 +3793,7 @@
                 return;
             }
             const choices = makeChoices(card, getFilteredVocabulary());
-            practiceContent.innerHTML = `<div class="space-y-5"><div class="text-center"><p class="text-sm font-bold text-gray-500 mb-2">Choose the meaning</p><p class="thai-text text-5xl font-black text-gray-900">${card.word}</p><p class="font-mono text-blue-600 mt-2">${card.pinyin}</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${choices.map(choice => `<button class="choice-btn" onclick="submitLearnChoice(${choice.word === card.word})">${choice.eng}</button>`).join('')}</div></div>`;
+            practiceContent.innerHTML = `<div class="space-y-5"><div class="text-center"><p class="text-sm font-bold text-gray-500 mb-2">Choose the meaning</p><p class="thai-text text-5xl font-black text-gray-900">${card.word}</p><p class="font-mono text-blue-600 mt-2">${card.pinyin}</p></div><div class="bg-gray-50 rounded-xl p-4 border border-gray-100">${generateColorCodedFullSentenceHTML(card)}</div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${choices.map(choice => `<button class="choice-btn" onclick="submitLearnChoice(${choice.word === card.word})">${choice.eng}</button>`).join('')}</div></div>`;
         }
 
         function recordLearnAnswer(isCorrect) {
@@ -3743,7 +3809,17 @@
             totalAnswered++;
             correctStreak = isCorrect ? correctStreak + 1 : 0;
             showToast(`${isCorrect ? 'Correct' : 'Repeat'}: ${masteryLabel(learnState.mastery[card.word])}`);
-            renderLearnQuestion();
+            practiceProgress.textContent = `${Math.min(learnState.answered, Math.min(18, learnState.deck.length))} / ${Math.min(18, learnState.deck.length)}`;
+            practiceScore.textContent = `Score: ${learnState.score}`;
+            practiceContent.innerHTML = `
+                <div class="text-center py-8 space-y-3">
+                    <div class="mx-auto w-16 h-16 rounded-full ${isCorrect ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'} flex items-center justify-center text-4xl font-black">${isCorrect ? '✓' : '!'}</div>
+                    <h3 class="text-2xl font-black ${isCorrect ? 'text-green-700' : 'text-amber-700'}">${isCorrect ? 'Correcto' : 'Repetir'}</h3>
+                    <p class="thai-text text-3xl font-black text-gray-900">${card.word}</p>
+                    <p class="text-gray-700 font-bold">${card.eng}</p>
+                </div>
+            `;
+            setTimeout(renderLearnQuestion, 650);
         }
 
         function submitLearnChoice(ok) { recordLearnAnswer(Boolean(ok)); }
