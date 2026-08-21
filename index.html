@@ -932,6 +932,287 @@
             color: #dbe5ff;
         }
 
+        /* Final cohesive dark app layer */
+        :root {
+            --app-bg: #0f172a;
+            --app-panel: #172033;
+            --app-panel-2: #1d2940;
+            --app-panel-3: #101827;
+            --app-border: rgba(255,255,255,.12);
+            --app-border-strong: rgba(148,163,184,.36);
+            --app-text: #f8fafc;
+            --app-muted: #9aa8bd;
+            --app-accent: #8ea2ff;
+            --app-accent-strong: #ffb35c;
+        }
+
+        html,
+        body {
+            background: var(--app-bg) !important;
+            color: var(--app-text) !important;
+        }
+
+        header h1,
+        header p,
+        #homeView h2,
+        #homeView h3,
+        #homeView h4,
+        #practiceLaunchers h3,
+        #practiceLaunchers h4,
+        #practiceTitle,
+        #flashcardContainer .text-gray-900,
+        #flashcardContainer .text-gray-800,
+        #flashcardContainer .text-gray-700 {
+            color: var(--app-text) !important;
+        }
+
+        header p,
+        #homeView p,
+        #practiceLaunchers p,
+        #helperText,
+        #deckStats,
+        #cardsRemaining,
+        .text-gray-600,
+        .text-gray-500,
+        .text-gray-400 {
+            color: var(--app-muted) !important;
+        }
+
+        .header-tags span {
+            background: var(--app-panel-2) !important;
+            color: #dbe5ff !important;
+            border: 1px solid var(--app-border) !important;
+        }
+
+        #searchInput {
+            background: var(--app-panel) !important;
+            color: var(--app-text) !important;
+            border-color: var(--app-border) !important;
+        }
+
+        #modeNav {
+            gap: 8px !important;
+        }
+
+        #navHome,
+        #modeWord,
+        #modeSentence,
+        #modeWrite,
+        #modeLearn,
+        #modeTest,
+        #modeMatch {
+            background: var(--app-panel-3) !important;
+            color: #d7deec !important;
+            border-color: var(--app-border) !important;
+            box-shadow: none !important;
+            min-height: 40px;
+        }
+
+        #navHome.bg-white,
+        #modeWord.bg-white,
+        #modeSentence.bg-white,
+        #modeWrite.bg-white,
+        #modeLearn.bg-white,
+        #modeTest.bg-white,
+        #modeMatch.bg-white {
+            background: #263763 !important;
+            color: #ffffff !important;
+            border-color: #9badff !important;
+            box-shadow: inset 3px 0 0 var(--app-accent) !important;
+        }
+
+        #homeView,
+        #practiceLaunchers,
+        #studyView,
+        #practiceView {
+            max-width: 860px !important;
+        }
+
+        #homeView > div:first-child,
+        #levelPanel,
+        #homeView > div:last-child,
+        #practiceLaunchers,
+        .practice-shell,
+        #flashcardContainer {
+            background: var(--app-panel) !important;
+            border: 1px solid var(--app-border) !important;
+            border-radius: 14px !important;
+            box-shadow: none !important;
+        }
+
+        #homeView > div:first-child {
+            min-height: 0;
+            padding: 24px !important;
+        }
+
+        #homeView > div:first-child::before,
+        #cardProgressBar {
+            background: var(--app-accent-strong) !important;
+        }
+
+        #homeView > div:first-child span.bg-white\/20 {
+            background: rgba(142,162,255,.14) !important;
+            color: #dbe5ff !important;
+            border: 1px solid rgba(142,162,255,.22);
+        }
+
+        #homeView > div:first-child > div:last-child,
+        #homeView .grid > div {
+            background: var(--app-panel-2) !important;
+            border: 1px solid var(--app-border) !important;
+            box-shadow: none !important;
+        }
+
+        .stat-icon,
+        .mode-symbol,
+        .completion-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(142,162,255,.14);
+            color: #dbe5ff;
+            border: 1px solid rgba(142,162,255,.22);
+            font-weight: 900;
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            flex: 0 0 auto;
+            font-size: 18px;
+        }
+
+        .mode-symbol {
+            width: 36px;
+            height: 28px;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .completion-mark {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            font-size: 34px;
+        }
+
+        #levelPanel {
+            padding: 24px 26px !important;
+        }
+
+        #levelControls {
+            grid-template-columns: repeat(auto-fit, minmax(86px, 1fr)) !important;
+            gap: 10px !important;
+        }
+
+        .level-btn {
+            min-height: 48px !important;
+            background: var(--app-panel-3) !important;
+            border-color: var(--app-border) !important;
+            border-radius: 9px !important;
+        }
+
+        .level-btn.is-active {
+            background: #263763 !important;
+            border-color: #9badff !important;
+            box-shadow: inset 0 3px 0 var(--app-accent-strong);
+        }
+
+        #homeView > div:last-child,
+        #practiceLaunchers {
+            padding: 24px 26px !important;
+        }
+
+        #homeView > div:last-child button,
+        #practiceLaunchers button {
+            background: var(--app-panel-2) !important;
+            color: var(--app-text) !important;
+            border: 1px solid var(--app-border) !important;
+            border-radius: 10px !important;
+            min-height: 126px;
+            box-shadow: none !important;
+        }
+
+        #homeView > div:last-child button:hover,
+        #practiceLaunchers button:hover {
+            background: #22304c !important;
+            border-color: var(--app-border-strong) !important;
+            transform: translateY(-1px);
+        }
+
+        #studyRightTools button,
+        #studyLevelBadge,
+        #btnPrev,
+        #cardsRemaining,
+        #practiceLevelBadge,
+        #practiceProgress,
+        #practiceScore {
+            background: var(--app-panel-2) !important;
+            color: #dbe5ff !important;
+            border: 1px solid var(--app-border) !important;
+            box-shadow: none !important;
+        }
+
+        #studyRightTools button.is-active,
+        #btnShow {
+            background: var(--app-accent) !important;
+            color: #0f172a !important;
+            border-color: var(--app-accent) !important;
+        }
+
+        #flashcardContainer {
+            min-height: 500px !important;
+        }
+
+        #flashcardContainer > div:last-child {
+            background: var(--app-panel-3) !important;
+            border-top-color: var(--app-border) !important;
+        }
+
+        #cardProgressTrack,
+        #cardDivider {
+            background: rgba(255,255,255,.1) !important;
+            border-color: var(--app-border) !important;
+        }
+
+        #cardExampleLabel {
+            color: #dbe5ff !important;
+            font-size: 13px !important;
+            font-weight: 800 !important;
+        }
+
+        .card-icon-btn,
+        #btnAudioFront,
+        #frontContentContainer button {
+            background: var(--app-panel-2) !important;
+            color: #dbe5ff !important;
+            border-color: var(--app-border) !important;
+        }
+
+        #cardBack .bg-gray-50,
+        #practiceContent .bg-gray-50,
+        #endScreen {
+            background: var(--app-panel-2) !important;
+            border-color: var(--app-border) !important;
+        }
+
+        #btnRatings button {
+            background: var(--app-panel-2) !important;
+            color: var(--app-text) !important;
+            border-color: var(--app-border) !important;
+        }
+
+        @media (max-width: 767px) {
+            #homeView > div:first-child {
+                padding: 20px !important;
+            }
+            #homeView > div:last-child button,
+            #practiceLaunchers button {
+                min-height: 96px;
+            }
+        }
+
     </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen flex flex-col bg-gray-50">
@@ -950,10 +1231,10 @@
                 <!-- Controls & Search -->
                 <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
                     <div id="modeNav" class="bg-white/10 p-1 rounded-full flex text-xs font-medium w-full sm:w-auto justify-center flex-wrap gap-1">
-                        <button id="navHome" onclick="goHome()" class="px-3 py-1.5 rounded-full transition-all bg-white text-fuchsia-700 shadow-sm font-semibold">🏠 Home</button>
+                        <button id="navHome" onclick="goHome()" class="px-3 py-1.5 rounded-full transition-all bg-white text-fuchsia-700 shadow-sm font-semibold">Home</button>
                         <button id="modeWord" onclick="setStudyMode('word')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Palabras</button>
                         <button id="modeSentence" onclick="setStudyMode('sentence')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Oraciones</button>
-                        <button id="modeWrite" onclick="setStudyMode('write')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Escritura ✍️</button>
+                        <button id="modeWrite" onclick="setStudyMode('write')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Escritura</button>
                         <button id="modeLearn" onclick="setPracticeMode('learn')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Learn</button>
                         <button id="modeTest" onclick="setPracticeMode('test')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Test</button>
                         <button id="modeMatch" onclick="setPracticeMode('match')" class="px-3 py-1.5 rounded-full transition-all text-white hover:bg-white/10 font-semibold">Match</button>
@@ -981,7 +1262,7 @@
             <div class="bg-gradient-to-br from-fuchsia-500 to-purple-600 text-white rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                     <span class="bg-white/20 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Progreso General</span>
-                    <h2 class="text-3xl font-extrabold mt-2">¡Sigue practicando tu Tailandés! 🇹🇭</h2>
+                    <h2 class="text-3xl font-extrabold mt-2">Sigue practicando tu tailandés</h2>
                     <p class="text-fuchsia-100 mt-1 text-sm">Visualiza tu avance, tarjetas repasadas y estadísticas de estudio.</p>
                 </div>
                 <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-center min-w-[140px] border border-white/20 shadow-inner">
@@ -993,21 +1274,21 @@
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4">
-                    <div class="p-3 bg-fuchsia-100 text-fuchsia-600 rounded-xl text-2xl">📚</div>
+                    <div class="stat-icon" aria-hidden="true">▦</div>
                     <div>
                         <p class="text-xs text-gray-400 font-medium">Total en el Mazo</p>
                         <p id="statTotal" class="text-xl font-bold text-gray-900">100</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4">
-                    <div class="p-3 bg-green-100 text-green-600 rounded-xl text-2xl">🔥</div>
+                    <div class="stat-icon" aria-hidden="true">✓</div>
                     <div>
                         <p class="text-xs text-gray-400 font-medium">Racha de Sesión</p>
                         <p id="statStreak" class="text-xl font-bold text-gray-900">0 correctas</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4">
-                    <div class="p-3 bg-blue-100 text-blue-600 rounded-xl text-2xl">⭐</div>
+                    <div class="stat-icon" aria-hidden="true">%</div>
                     <div>
                         <p class="text-xs text-gray-400 font-medium">Precisión</p>
                         <p id="statAccuracy" class="text-xl font-bold text-gray-900">100%</p>
@@ -1031,17 +1312,17 @@
                 <h3 class="text-lg font-bold text-gray-900 mb-4">Elige tu modalidad de estudio</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <button onclick="setStudyMode('word')" class="p-5 rounded-2xl bg-fuchsia-50 hover:bg-fuchsia-100 border border-fuchsia-200 text-left transition-all group">
-                        <span class="text-2xl mb-2 block">🔤</span>
+                        <span class="mode-symbol" aria-hidden="true">Aa</span>
                         <h4 class="font-bold text-fuchsia-900 group-hover:text-fuchsia-700">Modo Palabras</h4>
                         <p class="text-xs text-fuchsia-700/70 mt-1">Vocabulario esencial y fonética individual</p>
                     </button>
                     <button onclick="setStudyMode('sentence')" class="p-5 rounded-2xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-left transition-all group">
-                        <span class="text-2xl mb-2 block">💬</span>
+                        <span class="mode-symbol" aria-hidden="true">""</span>
                         <h4 class="font-bold text-purple-900 group-hover:text-purple-700">Modo Oraciones</h4>
                         <p class="text-xs text-purple-700/70 mt-1">Frases completas desglosadas por colores</p>
                     </button>
                     <button onclick="setStudyMode('write')" class="p-5 rounded-2xl bg-pink-50 hover:bg-pink-100 border border-pink-200 text-left transition-all group">
-                        <span class="text-2xl mb-2 block">✍️</span>
+                        <span class="mode-symbol" aria-hidden="true">✎</span>
                         <h4 class="font-bold text-pink-900 group-hover:text-pink-700">Modo Escritura</h4>
                         <p class="text-xs text-pink-700/70 mt-1">Escribe la respuesta correcta para afianzar</p>
                     </button>
@@ -1074,7 +1355,7 @@
             <div class="flex justify-between items-center mb-4 px-2 text-sm font-medium text-gray-500">
                 <div class="flex items-center gap-2">
                     <button onclick="prevCard()" id="btnPrev" class="px-3 py-1 bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-full shadow-sm transition-colors text-xs font-semibold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed">
-                        ⬅️ Volver atrás
+                        ← Volver
                     </button>
                     <span id="deckStats">Mazo cargando...</span>
                 </div>
@@ -1084,7 +1365,7 @@
             <!-- Quick tools inspired by the reference layout -->
             <div id="studyRightTools" aria-label="Herramientas de estudio">
                 <span id="studyLevelBadge">Nivel 1</span>
-                <button type="button" onclick="resetDeck()">🔀 <span>Mezclar</span></button>
+                <button type="button" onclick="resetDeck()">↻ <span>Mezclar</span></button>
                 <button type="button" id="btnAutoplay" onclick="toggleAutoplay()">▶ <span>Audio auto</span></button>
                 <button type="button" id="btnAudioOnly" onclick="toggleAudioOnly()">◉ <span>Solo audio</span></button>
                 <button type="button" onclick="goHome()">⌂ <span>Inicio</span></button>
@@ -1095,17 +1376,17 @@
                 
                 <div id="cardProgressTrack" aria-hidden="true"><div id="cardProgressBar"></div></div>
                 <div class="quiz-card-top">
-                    <span id="cardExampleLabel">💡 Ejemplo</span>
+                    <span id="cardExampleLabel">Ejemplo</span>
                     <div class="card-tool-row" aria-label="Herramientas de tarjeta">
                         <button type="button" id="btnWriteTool" class="card-icon-btn" title="Escribir">✎</button>
-                        <button type="button" id="btnAudioFront" class="card-icon-btn" title="Escuchar">🔊</button>
+                        <button type="button" id="btnAudioFront" class="card-icon-btn" title="Escuchar">♪</button>
                         <button type="button" id="btnFavorite" class="card-icon-btn" title="Favorito">★</button>
                     </div>
                 </div>
 
                 <!-- End of deck state -->
                 <div id="endScreen" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center p-8 text-center z-10">
-                    <span class="text-6xl mb-4">🎉</span>
+                    <span class="completion-mark" aria-hidden="true">✓</span>
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">¡Mazo completado!</h2>
                     <p class="text-gray-500 mb-6">Has revisado todas las tarjetas de esta sesión.</p>
                     <div class="flex gap-3 justify-center">
@@ -1113,7 +1394,7 @@
                             Reiniciar Sesión
                         </button>
                         <button onclick="goHome()" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full font-medium transition-colors shadow-sm">
-                            Ir a Home 🏠
+                            Ir a Home
                         </button>
                     </div>
                 </div>
@@ -1124,7 +1405,7 @@
                     <div id="cardFront" class="text-center py-6 flex-grow flex flex-col justify-center relative">
                         <!-- Imagen / Emoji condicional -->
                         <div class="mb-3" id="cardEmojiContainer">
-                            <span id="cardEmoji" class="text-6xl block">🇹🇭</span>
+                    <span id="cardEmoji" class="text-6xl block"></span>
                         </div>
                         
                         <div id="frontContentContainer">
@@ -3124,7 +3405,7 @@
                 btnAutoplay.classList.toggle('is-active', autoplayEnabled);
                 btnAutoplay.querySelector('span').textContent = autoplayEnabled ? 'Audio auto' : 'Audio manual';
             }
-            showToast(autoplayEnabled ? 'Audio automático activado 🔊' : 'Audio automático desactivado');
+            showToast(autoplayEnabled ? 'Audio automático activado' : 'Audio automático desactivado');
         }
 
         function updateAudioOnlyButton() {
@@ -3291,12 +3572,12 @@
                 return;
             } else {
                 endScreen.innerHTML = `
-                    <span class="text-6xl mb-4">🎉</span>
+                    <span class="completion-mark" aria-hidden="true">✓</span>
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">¡Mazo completado!</h2>
                     <p class="text-gray-500 mb-6">Has revisado todas las tarjetas de esta sesión.</p>
                     <div class="flex gap-3 justify-center">
                         <button onclick="resetDeck()" class="px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-full font-medium transition-colors shadow-md hover:shadow-lg">Reiniciar Sesión</button>
-                        <button onclick="goHome()" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full font-medium transition-colors shadow-sm">Ir a Home 🏠</button>
+                        <button onclick="goHome()" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full font-medium transition-colors shadow-sm">Ir a Home</button>
                     </div>
                 `;
             }
@@ -3496,7 +3777,7 @@
                 cardProgressBar.style.width = `${progress}%`;
             }
             if (cardExampleLabel) {
-                cardExampleLabel.textContent = `💡 ${card.engSent}`;
+                cardExampleLabel.textContent = `Ejemplo: ${card.engSent}`;
                 cardExampleLabel.title = card.thaiSent;
             }
 
@@ -3612,7 +3893,7 @@
             if (val && (targetEng.includes(val) || targetPinyin.includes(val) || val === targetEng)) {
                 masteredCount++;
                 correctStreak++;
-                showToast("¡Correcto! 🎉");
+                showToast("Correcto");
                 answerCard('good');
             } else {
                 correctStreak = 0;
@@ -3694,7 +3975,7 @@
             
             endScreen.classList.add('hidden');
             renderCard();
-            showToast("Tarjeta anterior restaurada ↩️");
+            showToast("Tarjeta anterior restaurada");
         }
 
         function setPracticeMode(mode) {
